@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Year } from './year';
-import './homepage.css';
+import './calendar.css';
 
 const moment = require('moment-hijri');
 
-export const Homepage = () => {
+export const Calendar = () => {
 	const [year, setYear] = useState(moment().format('YYYY'));
 	const english2arabic = (s) => s.replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[d]);
 	const firstDay = english2arabic(

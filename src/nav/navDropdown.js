@@ -1,8 +1,6 @@
 export const NavDropdown = ({ text, children }) => (
 	<div className='dropdown'>
-		<a className='dropdown-toggle' href='#'>
-			{text}
-		</a>
+		<span className='dropdown-toggle'>{text}</span>
 		<div className='dropdown-menu'>{children}</div>
 	</div>
 );
