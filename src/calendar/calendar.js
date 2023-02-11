@@ -39,6 +39,7 @@ export const Calendar = () => {
 			<div className='year-container'>
 				<Year year={+year} />
 			</div>
+			{/* TODO: legend */}
 		</div>
 	);
 };
