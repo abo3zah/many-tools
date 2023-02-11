@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Mada&family=Lalezar&display=swap');
+
+.navBar {
+	background-color: #202020;
+	color: white;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: center;
+	padding: 1rem;
+}
+
+.navbar-brand {
+	font-family: 'Mada', sans-serif;
+	font-size: 2rem;
+	justify-self: flex-start;
+	color: #af3440;
+	text-shadow: 1px 1px 1px white;
+}
+
+.nav-links-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.2rem;
+	position: relative;
+}
+
+.nav-links-container > .nav-link {
+	text-align: center;
+}
+
+.nav-link,
+.dropdown-toggle {
+	text-decoration: none;
+	color: black;
+	background-color: gainsboro;
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	min-width: 60px;
+	font-family: 'Lalezar', cursive;
+}
+
+.nav-link:hover:not(.active),
+.dropdown-toggle:hover {
+	background-color: whitesmoke;
+}
+
+.active {
+	background-color: transparent;
+	color: white;
+}
+
+.dropdown {
+	position: relative;
+}
+
+.dropdown .nav-link {
+	background-color: transparent;
+}
+
+.dropdown-toggle:hover + .dropdown-menu,
+.dropdown-menu:hover {
+	display: flex;
+	flex-direction: column;
+}
+
+.dropdown-menu {
+	padding: 0.5rem;
+	background-color: gainsboro;
+	border-radius: 0.5rem;
+	min-width: 200px;
+	display: none;
+	position: absolute;
+	top: 2rem;
+	border: 1px solid black;
+	max-height: 200px;
+	overflow: auto;
+}
+
+.navbar-toggler {
+	flex: 0 0;
+}
+
+@media screen and (min-width: 900px) {
+	.navbar-toggler {
+		display: none;
+	}
+}

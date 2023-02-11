@@ -1,0 +1,182 @@
+:root {
+	--blue: #1e83ae;
+	--green: #82b772;
+	--leather: #9d7253;
+}
+
+.content {
+	background-color: white;
+	display: grid;
+	grid-template-columns: 1fr;
+	justify-content: center;
+	padding: 1rem;
+	gap: 1rem;
+}
+
+.flex-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	gap: 1rem;
+}
+
+.hijri-year {
+	font-weight: bold;
+	font-size: 3rem;
+}
+
+.georgian-year {
+	text-align: left;
+	font-size: 5rem;
+	border: 0px solid black;
+	font-weight: bold;
+
+	background-color: var(--green);
+	background-image: linear-gradient(0deg, var(--green), var(--blue));
+	background-size: 100%;
+	background-repeat: repeat;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-moz-background-clip: text;
+	-moz-text-fill-color: transparent;
+}
+
+.year-container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(375px, 1fr));
+	gap: 0.3rem;
+}
+
+.month-container {
+	display: grid;
+	grid-template-columns: repeat(15, 1fr);
+	grid-auto-rows: 40px;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+	border: 1px solid #aaa;
+	border-radius: 10px;
+	background-color: white;
+	gap: 0.2rem;
+}
+
+.month-name {
+	grid-column: span 7;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.3rem;
+	text-shadow: 1px 1px 2px #aaa;
+}
+
+.month-hijri-name {
+	font-size: 1.3rem;
+}
+
+.first-month-color {
+	color: #1e83ae;
+}
+
+.second-month-color {
+	color: #82b772;
+}
+
+.third-month-color {
+	color: #9d7253;
+}
+
+.week-number {
+	text-align: right;
+	font-weight: bold;
+	color: #aaa;
+}
+
+.day-inititals {
+	grid-column: span 2;
+	text-align: center;
+	font-weight: bold;
+	background-color: #ccc;
+	border-radius: 5px 0 5px 0;
+	padding: 0.3rem;
+}
+
+.empty-fileds {
+	grid-column: span 2;
+}
+
+.date-container {
+	grid-column: span 2;
+	display: grid;
+	border-style: solid;
+	border-color: black;
+	border-width: 0.5px;
+	border-radius: 5px 0 5px 0;
+}
+
+.georgian {
+	text-align: center;
+	font-weight: bold;
+}
+
+.hijri {
+	text-align: left;
+	font-weight: bold;
+	padding: 0rem 0.1rem;
+}
+
+.weekend,
+.weekend span {
+	color: #ccc;
+	background-color: #999;
+}
+
+.ramdan,
+.ramdan span {
+	background-color: limegreen;
+	color: black;
+}
+
+.today {
+	border: 3px solid black;
+	background-color: #e1e1e1;
+	animation: today-animation 2000ms ease-in-out infinite;
+}
+
+.aramco-vacation,
+.aramco-vacation span {
+	color: black;
+	background-color: #87cefa;
+}
+
+.school-vacation,
+.school-vacation span {
+	background-color: yellow;
+	color: black;
+}
+
+.school-vacation.aramco-vacation {
+	background: linear-gradient(
+		90deg,
+		yellow,
+		yellow 50%,
+		#87cefa 50%,
+		#87cefa
+	);
+}
+.school-vacation.aramco-vacation span {
+	background: none;
+}
+
+@keyframes today-animation {
+	0% {
+		filter: brightness(1);
+	}
+
+	50% {
+		filter: brightness(0.8);
+	}
+
+	100% {
+		filter: brightness(1);
+	}
+}
