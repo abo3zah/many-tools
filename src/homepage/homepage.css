@@ -180,3 +180,15 @@
 		filter: brightness(1);
 	}
 }
+
+@media screen and (max-width: 700px) {
+	.flex-container {
+		grid-template-columns: 1fr;
+		justify-content: center;
+	}
+
+	.hijri-year,
+	.georgian-year {
+		text-align: center;
+	}
+}

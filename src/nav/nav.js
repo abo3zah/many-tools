@@ -12,12 +12,20 @@ export const Nav = () => {
 			<NavBar>
 				<NavBrand />
 				<NavLinks>
-					<NavItem active={true} href='/' text='الرئيسية' />
-					<NavItem active={false} href='/' text='الرئيسية' />
+					<NavItem
+						active={true}
+						href='/many-tools'
+						text='الرئيسية'
+					/>
+					<NavItem
+						active={false}
+						href='/many-tools'
+						text='الرئيسية'
+					/>
 					<NavDropdown text='الرئيسية'>
-						<NavItem href='/' text='تجربة' />
-						<NavItem href='/' text='تجربة' />
-						<NavItem href='/' text='تجربة' />
+						<NavItem href='/many-tools' text='تجربة' />
+						<NavItem href='/many-tools' text='تجربة' />
+						<NavItem href='/many-tools' text='تجربة' />
 					</NavDropdown>
 				</NavLinks>
 				<SmallerScreenButton />
