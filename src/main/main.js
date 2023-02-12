@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import './main.css';
 
 export const Main = () => {
-	const [links] = useState([{ link: 'calendar', text: 'التقويم' }]);
+	const [links] = useState([
+		{ link: 'many-tools/calendar', text: 'التقويم' },
+	]);
 
 	return (
 		<div className='container'>

@@ -188,7 +188,7 @@
 
 .legend-container div {
 	padding: 0.5rem;
-	font-size: 1.5rem;
+	font-size: 1.1rem;
 	font-weight: bold;
 	border-radius: 15px;
 	border: 1px solid black;
@@ -218,5 +218,10 @@
 	.hijri-year,
 	.georgian-year {
 		text-align: center;
+	}
+
+	.legend-container {
+		display: grid;
+		grid-template-columns: 1fr;
 	}
 }

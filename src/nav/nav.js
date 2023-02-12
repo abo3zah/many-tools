@@ -13,10 +13,10 @@ export const Nav = () => {
 				<NavBrand />
 				<NavLinks>
 					<Link to={`/`}>الرئيسية</Link>
-					<Link to={`/calendar`}>التقويم</Link>
+					<Link to={`/many-tools/calendar`}>التقويم</Link>
 					<NavDropdown text='أخرى'>
 						<Link to={`/`}>الرئيسية</Link>
-						<Link to={`/calendar`}>التقويم</Link>
+						<Link to={`/many-tools/calendar`}>التقويم</Link>
 					</NavDropdown>
 				</NavLinks>
 				<SmallerScreenButton />

@@ -14,7 +14,10 @@ root.render(
 				<Nav />
 				<Routes>
 					<Route path='/' element={<Main />} />
-					<Route path='/calendar' element={<Calendar />} />
+					<Route
+						path='/many-tools/calendar'
+						element={<Calendar />}
+					/>
 					<Route path='*' element={<Main />} />
 				</Routes>
 			</BrowserRouter>
