@@ -176,6 +176,24 @@
 	background: none;
 }
 
+.legend-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	text-align: center;
+	gap: 0.5rem;
+}
+
+.legend-container div {
+	padding: 0.5rem;
+	font-size: 1.5rem;
+	font-weight: bold;
+	border-radius: 15px;
+	border: 1px solid black;
+}
+
 @keyframes today-animation {
 	0% {
 		filter: brightness(1);

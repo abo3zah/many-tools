@@ -39,6 +39,14 @@ export const Calendar = () => {
 			<div className='year-container'>
 				<Year year={+year} />
 			</div>
+			<div className='legend-container'>
+				<div className='ramdan'>رمضان</div>
+				<div className='school-vacation'>إجازات مدرسية</div>
+				<div className='aramco-vacation'>
+					إجازات أرامكو السعودية
+				</div>
+			</div>
+
 			{/* TODO: legend */}
 		</div>
 	);

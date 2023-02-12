@@ -4,19 +4,20 @@ import { Nav } from './nav/nav';
 import { Main } from './main/main';
 import { Calendar } from './calendar/calendar';
 import './index.css';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
 		<div className='mainPage'>
-			<HashRouter>
+			<BrowserRouter>
 				<Nav />
 				<Routes>
 					<Route path='/' element={<Main />} />
 					<Route path='/calendar' element={<Calendar />} />
+					<Route path='*' element={<Main />} />
 				</Routes>
-			</HashRouter>
+			</BrowserRouter>
 		</div>
 	</React.StrictMode>
 );
