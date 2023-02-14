@@ -1,26 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Nav } from './nav/nav';
 import { Main } from './main/main';
 import { Calendar } from './calendar/calendar';
 import './index.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
 		<div className='mainPage'>
-			<BrowserRouter>
+			<HashRouter>
 				<Nav />
 				<Routes>
 					<Route path='/' element={<Main />} />
-					<Route
-						path='/many-tools/calendar'
-						element={<Calendar />}
-					/>
-					<Route path='*' element={<Main />} />
+					<Route path='/calendar' element={<Calendar />} />
+					<Route path='*' element={<Navigate to='/' />} />
 				</Routes>
-			</BrowserRouter>
+			</HashRouter>
 		</div>
 	</React.StrictMode>
 );

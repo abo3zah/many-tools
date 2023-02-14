@@ -2,7 +2,7 @@ import { NavBar } from './navBar';
 import { NavBrand } from './navBrand';
 import { SmallerScreenButton } from './smallerScreenButton';
 import { NavLinks } from './navLinks';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { NavDropdown } from './navDropdown';
 import './nav.css';
 
@@ -12,11 +12,11 @@ export const Nav = () => {
 			<NavBar>
 				<NavBrand />
 				<NavLinks>
-					<Link to={`/`}>الرئيسية</Link>
-					<Link to={`/many-tools/calendar`}>التقويم</Link>
+					<NavLink to='/'>الرئيسية</NavLink>
+					<NavLink to='/calendar'>التقويم</NavLink>
 					<NavDropdown text='أخرى'>
-						<Link to={`/`}>الرئيسية</Link>
-						<Link to={`/many-tools/calendar`}>التقويم</Link>
+						<NavLink to={`/`}>الرئيسية</NavLink>
+						<NavLink to={`/calendar`}>التقويم</NavLink>
 					</NavDropdown>
 				</NavLinks>
 				<SmallerScreenButton />
