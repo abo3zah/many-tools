@@ -1,0 +1,101 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 1rem;
+	gap: 0.5rem;
+}
+
+.inputGroup {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	position: relative;
+}
+
+.inputs {
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 0.5rem;
+	width: 300px;
+	text-align: left;
+	font-weight: bold;
+}
+
+.inputs:focus {
+	background-color: whitesmoke;
+	border: 0px;
+	outline: 3px solid SteelBlue;
+}
+
+.labels {
+	font-weight: bold;
+}
+
+.inputs:focus + .hijriDiv,
+.hijriDiv:hover {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	grid-auto-rows: 20px;
+	align-items: center;
+}
+
+.hijriDiv {
+	display: none;
+	position: absolute;
+	top: 2.4rem;
+	left: 0%;
+	background-color: WhiteSmoke;
+	border: 1px solid black;
+	padding: 0.3rem;
+	min-width: 300px;
+	row-gap: 0.2rem;
+	border-radius: 5px;
+}
+
+.hijriDiv span {
+	text-align: center;
+	font-weight: bold;
+}
+
+.datePickerHeader {
+	grid-column: span 7;
+}
+
+.yearPicker {
+	grid-column: span 3;
+	margin-left: 5px;
+	font-weight: bold;
+}
+
+.monthPicker {
+	grid-column: span 4;
+	font-weight: bold;
+}
+
+option:checked {
+	background-color: lightgray;
+	font-weight: bold;
+}
+
+span.weekDay {
+	cursor: default;
+}
+
+span.day {
+	padding: 0.2rem;
+	font-weight: 100;
+	cursor: pointer;
+}
+
+span.day.today {
+	background-color: SteelBlue;
+	color: white;
+}
+
+.day:hover {
+	background-color: SteelBlue;
+	color: white;
+}

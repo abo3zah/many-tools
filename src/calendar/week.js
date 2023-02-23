@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { HijriMonthsContext, MonthColorContext } from './monthHeader';
 import { aramcoVacation, schoolVacation } from '../data/vacations';
+import styles from './calendar.module.css';
 
 const moment = require('moment-hijri');
 
@@ -14,7 +15,9 @@ export const Week = ({ year, month, day }) => {
 	const arabicMonths = useContext(HijriMonthsContext);
 
 	days.push(
-		<div key={`${month}date${date.format()}w`} className='week-number'>
+		<div
+			key={`${month}date${date.format()}w`}
+			className={styles.weekNumber}>
 			{date.week()}
 		</div>
 	);
@@ -24,7 +27,7 @@ export const Week = ({ year, month, day }) => {
 	for (let i = 0; i < dayNum; i++) {
 		days.push(
 			<div
-				className='empty-fileds'
+				className={styles.emptyFileds}
 				key={`${month}date${date.format()}`}></div>
 		);
 		date.add(1, 'days');
@@ -38,29 +41,29 @@ export const Week = ({ year, month, day }) => {
 
 		let classes = [];
 
-		if (moment().startOf('day').isSame(date)) classes.push('today');
+		if (moment().startOf('day').isSame(date)) classes.push(styles.today);
 
-		if (date.day() > 4) classes.push('weekend');
+		if (date.day() > 4) classes.push(styles.weekend);
 
 		aramcoVacation.forEach((vacation) => {
 			moment(date).isBetween(vacation[0], vacation[1], 'day', '[]') &&
-				classes.push('aramco-vacation');
+				classes.push(styles.aramcoVacation);
 		});
 
 		schoolVacation.forEach((vacation) => {
 			moment(date).isBetween(vacation[0], vacation[1], 'day', '[]') &&
-				classes.push('school-vacation');
+				classes.push(styles.schoolVacation);
 		});
 
-		date.format('iM') === '9' && classes.push('ramdan');
+		date.format('iM') === '9' && classes.push(styles.ramdan);
 
 		days.push(
 			<div
 				key={`${month}date${date.format()}`}
-				className={`date-container ${classes.join(' ')}`}>
-				<span className='georgian'>{date.date()}</span>
+				className={`${styles.dateContainer} ${classes.join(' ')}`}>
+				<span className={styles.georgian}>{date.date()}</span>
 				<span
-					className={`hijri ${
+					className={`${styles.hijri} ${
 						colors[arabicMonths.indexOf(date.format('iMMM'))]
 					}`}>
 					{english2arabic(date.format('iD'))}

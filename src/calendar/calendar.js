@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Year } from './year';
-import './calendar.css';
+import styles from './calendar.module.css';
 
 const moment = require('moment-hijri');
 
@@ -19,9 +19,12 @@ export const Calendar = () => {
 	};
 
 	return (
-		<div className='content'>
-			<div className='flex-container'>
-				<div className='hijri-year'>{`${firstDay} - ${lastDay} هـ`}</div>
+		<div className={styles.content}>
+			<div className={styles.flexContainer}>
+				<div
+					className={
+						styles.hijriYear
+					}>{`${firstDay} - ${lastDay} هـ`}</div>
 				<input
 					type='number'
 					pattern='[0-9]*'
@@ -32,22 +35,20 @@ export const Calendar = () => {
 					max={2077}
 					value={year}
 					onChange={(e) => checkEnteredYear(e.target.value)}
-					className='georgian-year'
+					className={styles.georgianYear}
 				/>
 			</div>
 
-			<div className='year-container'>
+			<div className={styles.yearContainer}>
 				<Year year={+year} />
 			</div>
-			<div className='legend-container'>
-				<div className='ramdan'>رمضان</div>
-				<div className='school-vacation'>إجازات مدرسية</div>
-				<div className='aramco-vacation'>
+			<div className={styles.legendContainer}>
+				<div className={styles.ramdan}>رمضان</div>
+				<div className={styles.schoolVacation}>إجازات مدرسية</div>
+				<div className={styles.aramcoVacation}>
 					إجازات أرامكو السعودية
 				</div>
 			</div>
-
-			{/* TODO: legend */}
 		</div>
 	);
 };

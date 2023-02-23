@@ -1,13 +1,14 @@
 import { createContext, useState } from 'react';
+import styles from './calendar.module.css';
 
 const moment = require('moment-hijri');
 
 moment.locale('ar');
 
 export const MonthColorContext = createContext([
-	'first-month-color',
-	'second-month-color',
-	'third-month-color',
+	'firstMonthColor',
+	'secondMonthColor',
+	'thirdMonthColor',
 ]);
 
 export const HijriMonthsContext = createContext([]);
@@ -17,9 +18,9 @@ export const MonthHeader = ({ children, year, month }) => {
 	let currentDate = moment(`${year}-${month}-1`, 'YYYY-M-D');
 	let monthName = currentDate.format('MMMM');
 	const [colors] = useState([
-		'first-month-color',
-		'second-month-color',
-		'third-month-color',
+		styles.firstMonthColor,
+		styles.secondMonthColor,
+		styles.thirdMonthColor,
 	]);
 
 	for (let i = 0; i < 3; i++) {
@@ -31,36 +32,36 @@ export const MonthHeader = ({ children, year, month }) => {
 	}
 
 	return (
-		<div className='month-container'>
-			<div className='week-number'></div>
-			<div className='month-name'>{monthName}</div>
-			<div className='month-name'>
+		<div className={styles.monthContainer}>
+			<div className={styles.weekNumber}></div>
+			<div className={styles.monthName}>{monthName}</div>
+			<div className={styles.monthName}>
 				{arabicMonths.map((e, i) => {
 					return i === 0 ? (
 						<span
 							key={`month-hijri${i}`}
-							className={`month-hijri-name ${colors[i]}`}>
+							className={`${styles.monthHijriName} ${colors[i]}`}>
 							{e}
 						</span>
 					) : (
 						<span key={`month-hijri${i}`}>
 							&nbsp;-&nbsp;
 							<span
-								className={`month-hijri-name ${colors[i]}`}>
+								className={`${styles.monthHijriName} ${colors[i]}`}>
 								{e}
 							</span>
 						</span>
 					);
 				})}
 			</div>
-			<div className='week-number'>#</div>
-			<div className='day-inititals'>أ</div>
-			<div className='day-inititals'>إ</div>
-			<div className='day-inititals'>ث</div>
-			<div className='day-inititals'>ر</div>
-			<div className='day-inititals'>خ</div>
-			<div className='day-inititals'>ج</div>
-			<div className='day-inititals'>س</div>
+			<div className={styles.weekNumber}>#</div>
+			<div className={styles.dayInititals}>أ</div>
+			<div className={styles.dayInititals}>إ</div>
+			<div className={styles.dayInititals}>ث</div>
+			<div className={styles.dayInititals}>ر</div>
+			<div className={styles.dayInititals}>خ</div>
+			<div className={styles.dayInititals}>ج</div>
+			<div className={styles.dayInititals}>س</div>
 			<MonthColorContext.Provider value={colors}>
 				<HijriMonthsContext.Provider value={arabicMonths}>
 					{children}

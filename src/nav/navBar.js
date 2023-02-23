@@ -1,3 +1,3 @@
 export const NavBar = ({ children }) => (
-	<nav className='navBar'>{children}</nav>
+	<nav className='nav-bar'>{children}</nav>
 );
