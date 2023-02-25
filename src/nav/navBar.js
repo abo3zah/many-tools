@@ -1,3 +1,5 @@
+import styles from './nav.module.css';
+
 export const NavBar = ({ children }) => (
-	<nav className='nav-bar'>{children}</nav>
+	<nav className={styles.navBar}>{children}</nav>
 );

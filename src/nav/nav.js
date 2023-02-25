@@ -4,7 +4,6 @@ import { SmallerScreenButton } from './smallerScreenButton';
 import { NavLinks } from './navLinks';
 import { NavLink } from 'react-router-dom';
 import { NavDropdown } from './navDropdown';
-import './nav.css';
 
 export const Nav = () => {
 	return (

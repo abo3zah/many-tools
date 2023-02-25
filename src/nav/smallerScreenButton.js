@@ -1,7 +1,9 @@
+import styles from './nav.module.css';
+
 export const SmallerScreenButton = () => (
 	<>
-		<button className='navbar-toggler' type='button'>
-			<span className='navbar-toggler-icon'></span>
+		<button className={styles.navbarToggler} type='button'>
+			<span className={styles.navbarTogglerIcon}></span>
 		</button>
 	</>
 );

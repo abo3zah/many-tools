@@ -1,3 +1,5 @@
+import styles from './nav.module.css';
+
 export const NavLinks = ({ children }) => (
-	<div className='nav-links-container'>{children}</div>
+	<div className={styles.navLinksContainer}>{children}</div>
 );

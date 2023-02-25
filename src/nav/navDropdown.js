@@ -1,6 +1,8 @@
+import styles from './nav.module.css';
+
 export const NavDropdown = ({ text, children }) => (
-	<div className='dropdown'>
-		<span className='dropdown-toggle'>{text}</span>
-		<div className='dropdown-menu'>{children}</div>
+	<div className={styles.dropdown}>
+		<span className={styles.dropdownToggle}>{text}</span>
+		<div className={styles.dropdownMenu}>{children}</div>
 	</div>
 );

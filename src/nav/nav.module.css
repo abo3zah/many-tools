@@ -1,40 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Mada&family=Lalezar&display=swap');
 
-.nav-bar {
+.navBar {
 	background-color: #202020;
 	color: MintCream;
 	padding: 1rem;
-
+	z-index: 1000;
 	display: grid;
 	grid-template-columns: auto 1fr;
 	align-items: center;
 }
 
-.navbar-brand {
+.navbarBrand {
 	font-family: 'Mada', sans-serif;
 	font-size: 2rem;
 	text-shadow: 1px 1px 1px white;
 }
 
-.nav-links-container {
+.navLinksContainer {
 	justify-self: center;
-
 	display: flex;
 	gap: 0.2rem;
 }
 
-.nav-links-container > a,
-.dropdown .dropdown-toggle {
+.navLinksContainer > a,
+.dropdown .dropdownToggle {
 	text-align: center;
 }
 
-.nav-links-container a:not(.active):hover,
-.dropdown-toggle:hover {
+.navLinksContainer a:not(.active):hover,
+.dropdownToggle:hover {
 	background-color: whitesmoke;
 }
 
-.nav-links-container a,
-.dropdown-toggle {
+.navLinksContainer a,
+.dropdownToggle {
 	color: black;
 	text-decoration: none;
 	background-color: gainsboro;
@@ -51,7 +50,7 @@
 	align-items: center;
 }
 
-.dropdown-menu {
+.dropdownMenu {
 	padding: 0.1rem;
 	background-color: gainsboro;
 	border-radius: 5px;
@@ -64,13 +63,13 @@
 	overflow: auto;
 }
 
-.dropdown-toggle:hover + .dropdown-menu,
-.dropdown-menu:hover {
+.dropdownToggle:hover + .dropdownMenu,
+.dropdownMenu:hover {
 	display: flex;
 	flex-direction: column;
 }
 
-.navbar-toggler {
+.navbarToggler {
 	flex: 0 0;
 	display: none;
 }
@@ -87,12 +86,12 @@ a.active {
 }
 
 @media screen and (max-width: 700px) {
-	.navbar-toggler {
+	.navbarToggler {
 		display: block;
 		justify-self: flex-end;
 	}
 
-	.nav-links-container {
+	.navLinksContainer {
 		display: none;
 	}
 }

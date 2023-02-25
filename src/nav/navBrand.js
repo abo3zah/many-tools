@@ -1,5 +1,7 @@
+import styles from './nav.module.css';
+
 export const NavBrand = () => (
-	<span className='navbar-brand' href='#'>
+	<span className={styles.navbarBrand} href='#'>
 		⚒️ أدوات
 	</span>
 );
