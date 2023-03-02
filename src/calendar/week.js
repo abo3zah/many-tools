@@ -1,16 +1,15 @@
 import { useContext } from 'react';
 import { HijriMonthsContext, MonthColorContext } from './monthHeader';
 import { aramcoVacation, schoolVacation } from '../data/vacations';
+import { english2arabic } from '../common/english2arabic';
+import { moment } from '../common/momentCalendar';
 import styles from './calendar.module.css';
-
-const moment = require('moment-hijri');
 
 export const Week = ({ year, month, day }) => {
 	let days = [];
 	let date = moment(`${year}-${month}-${day}`, 'YYYY-M-D');
 	let dayNum = date.day();
 
-	const english2arabic = (s) => s.replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[d]);
 	const colors = useContext(MonthColorContext);
 	const arabicMonths = useContext(HijriMonthsContext);
 

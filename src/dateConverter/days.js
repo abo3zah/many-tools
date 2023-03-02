@@ -1,23 +1,27 @@
 import { useEffect, useState } from 'react';
+import { moment } from '../common/momentCalendar';
 
 import styles from './DateConverter.module.css';
 
-//define moment module through require
-const moment = require('moment-hijri');
-
-export const Days = ({ selectedDate, setSelectedDate }) => {
+export const Days = ({ selectedDate, setSelectedDate, gergInput }) => {
 	const [days, setDays] = useState([]);
 
 	useEffect(() => {
 		let daysTemp = [];
-		let startOfMonth = moment(selectedDate).startOf('iMonth');
-		let endOfMonth = moment(selectedDate).endOf('iMonth');
+		let startOfMonth = moment(selectedDate).startOf(
+			gergInput ? 'month' : 'iMonth'
+		);
+		let endOfMonth = moment(selectedDate).endOf(
+			gergInput ? 'month' : 'iMonth'
+		);
 		let currentDate = moment(startOfMonth);
 
 		while (currentDate <= endOfMonth) {
 			daysTemp.push(
 				<span
-					key={currentDate.format('iD/iM/iYYYY')}
+					key={currentDate.format(
+						gergInput ? 'D/M/YYYY' : 'iD/iM/iYYYY'
+					)}
 					className={`${styles.day} ${
 						currentDate.isSame(selectedDate)
 							? styles.today
@@ -29,7 +33,7 @@ export const Days = ({ selectedDate, setSelectedDate }) => {
 							moment(e.target.attributes[1].nodeValue)
 						)
 					}>
-					{currentDate.format('iD')}
+					{currentDate.format(gergInput ? 'D' : 'iD')}
 				</span>
 			);
 			currentDate.add(1, 'days');

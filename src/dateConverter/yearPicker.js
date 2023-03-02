@@ -1,9 +1,12 @@
 import styles from './DateConverter.module.css';
 
-export const YearPicker = ({ selectedYear, setYear }) => {
+export const YearPicker = ({ selectedYear, setYear, gergInput }) => {
 	let years = [];
 
-	for (let i = 1375; i <= 1475; i++) {
+	let start = gergInput ? 1937 : 1356;
+	let end = gergInput ? 2053 : 1475;
+
+	for (let i = start; i <= end; i++) {
 		years.push(
 			<option key={'option' + i} value={i}>
 				{i}

@@ -1,24 +1,10 @@
+import { hijriMonths, gergMonths } from '../common/months';
 import styles from './DateConverter.module.css';
 
-export const MonthPicker = ({ selectedMonth, setMonth }) => {
-	const hijriMonths = [
-		'محرم',
-		'صفر',
-		'ربيع الأول',
-		'ربيع الثاني',
-		'جمادى الأولى',
-		'جمادى الآخرة',
-		'رجب',
-		'شعبان',
-		'رمضان',
-		'شوال',
-		'ذو القعدة',
-		'ذو الحجة',
-	];
-
+export const MonthPicker = ({ selectedMonth, setMonth, gergInput }) => {
 	let months = [];
 
-	hijriMonths.forEach((month, index) => {
+	(gergInput ? gergMonths : hijriMonths).forEach((month, index) => {
 		months.push(
 			<option key={'option' + index} value={index + 1}>
 				{month}

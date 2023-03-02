@@ -1,7 +1,6 @@
 import { MonthHeader } from './monthHeader';
 import { Week } from './week';
-
-const moment = require('moment-hijri');
+import { moment } from '../common/momentCalendar';
 
 export const Month = ({ year, month }) => {
 	let weeks = [];

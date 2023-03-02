@@ -1,12 +1,11 @@
 import styles from './DateConverter.module.css';
-import { UserInputGregorian } from './userInputGregorian';
-import { UserInputHijri } from './userInputHijri';
+import { UserInput } from './userInput';
 
 export const DateConverter = () => {
 	return (
 		<div className={styles.container}>
-			<UserInputGregorian />
-			<UserInputHijri />
+			<UserInput gergInput={true} />
+			<UserInput gergInput={false} />
 		</div>
 	);
 };

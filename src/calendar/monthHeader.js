@@ -1,9 +1,7 @@
 import { createContext, useState } from 'react';
+import { moment } from '../common/momentCalendar';
+import { weekDaysMin } from '../common/months';
 import styles from './calendar.module.css';
-
-const moment = require('moment-hijri');
-
-moment.locale('ar');
 
 export const MonthColorContext = createContext([
 	'firstMonthColor',
@@ -55,13 +53,11 @@ export const MonthHeader = ({ children, year, month }) => {
 				})}
 			</div>
 			<div className={styles.weekNumber}>#</div>
-			<div className={styles.dayInititals}>أ</div>
-			<div className={styles.dayInititals}>إ</div>
-			<div className={styles.dayInititals}>ث</div>
-			<div className={styles.dayInititals}>ر</div>
-			<div className={styles.dayInititals}>خ</div>
-			<div className={styles.dayInititals}>ج</div>
-			<div className={styles.dayInititals}>س</div>
+			{weekDaysMin.map((day) => (
+				<div key={day} className={styles.dayInititals}>
+					{day}
+				</div>
+			))}
 			<MonthColorContext.Provider value={colors}>
 				<HijriMonthsContext.Provider value={arabicMonths}>
 					{children}

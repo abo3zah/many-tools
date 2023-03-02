@@ -8,6 +8,13 @@
 	gap: 0.5rem;
 }
 
+.hijriContainer {
+	display: grid;
+	grid-template-columns: 1fr;
+	width: minmax(300px, 100%);
+	row-gap: 1rem;
+}
+
 .inputGroup {
 	display: flex;
 	justify-content: center;
@@ -101,4 +108,9 @@ span.day.today {
 .day:hover {
 	background-color: SteelBlue;
 	color: white;
+}
+
+.output {
+	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+		'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
