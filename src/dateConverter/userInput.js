@@ -6,8 +6,8 @@ import { YearPicker } from './yearPicker';
 import { MonthPicker } from './monthPicker';
 import { Days } from './days';
 import { DateToDate } from './dateToDate';
-import styles from './DateConverter.module.css';
 import { moment } from '../common/momentCalendar';
+import styles from './DateConverter.module.css';
 
 export const UserInput = ({ gergInput }) => {
 	// states
@@ -43,7 +43,7 @@ export const UserInput = ({ gergInput }) => {
 	}, [year, month]);
 
 	return (
-		<div className={styles.hijriContainer}>
+		<div className={styles.userInputContainer}>
 			<div className={styles.inputGroup}>
 				<label className={styles.labels} htmlFor='userInput'>
 					التاريخ {gergInput ? 'الميلادي' : 'الهجري'}
@@ -58,7 +58,7 @@ export const UserInput = ({ gergInput }) => {
 					)}
 					placeholder='D/M/YYYY'
 				/>
-				<div className={styles.hijriDiv}>
+				<div className={styles.popupDiv}>
 					<DatePickerHeader
 						date={selectedDate.format(
 							gergInput
@@ -71,11 +71,15 @@ export const UserInput = ({ gergInput }) => {
 						selectedYear={year}
 						setYear={setYear}
 						gergInput={gergInput}
+						selectedDate={selectedDate}
+						setSelectedDate={setSelectedDate}
 					/>
 					<MonthPicker
 						selectedMonth={month}
 						setMonth={setMonth}
 						gergInput={gergInput}
+						selectedDate={selectedDate}
+						setSelectedDate={setSelectedDate}
 					/>
 
 					<WeekDays />

@@ -8,11 +8,12 @@
 	gap: 0.5rem;
 }
 
-.hijriContainer {
+.userInputContainer {
 	display: grid;
 	grid-template-columns: 1fr;
 	width: minmax(300px, 100%);
 	row-gap: 1rem;
+	justify-content: start;
 }
 
 .inputGroup {
@@ -43,8 +44,8 @@
 	font-weight: bold;
 }
 
-.inputs:focus + .hijriDiv,
-.hijriDiv:hover {
+.inputs:focus + .popupDiv,
+.popupDiv:hover {
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
 	grid-auto-rows: 20px;
@@ -52,7 +53,7 @@
 	z-index: 1000;
 }
 
-.hijriDiv {
+.popupDiv {
 	display: none;
 	position: absolute;
 	top: 2.25rem;
@@ -65,7 +66,7 @@
 	border-radius: 5px;
 }
 
-.hijriDiv span {
+.popupDiv span {
 	text-align: center;
 	font-weight: bold;
 }
@@ -111,6 +112,24 @@ span.day.today {
 }
 
 .output {
+	list-style-type: none;
+	padding: 1rem;
+	margin: 0;
+	background-color: WhiteSmoke;
+	border-radius: 20px;
+}
+
+.output li {
 	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
 		'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	font-size: 0.95rem;
+	padding: .2rem 0;
+}
+
+.output li:before {
+	content: '-';
+	color: black;
+	font-weight: bold;
+	display: inline-block;
+	width: .8rem;
 }

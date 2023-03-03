@@ -22,18 +22,18 @@ export const DateToDate = ({ selectedDate, gergInput }) => {
 	}, [selectedDate]);
 
 	return (
-		<ul>
-			<li className={styles.output}>
+		<ul className={styles.output}>
+			<li>
 				<b>التاريخ {gergInput ? 'الهجري' : 'الميلادي'} هو </b>
 				{english2arabic(
 					selectedDate.format(
 						gergInput
-							? 'dddd iD / iMMMM (iM) / iYYYY هـ'
-							: 'dddd D / MMMM (M) / YYYY م'
+							? 'dddd iD/iMMMM (iM)/iYYYY هـ'
+							: 'dddd D/MMMM (M)/YYYY م'
 					)
 				)}
 			</li>
-			<li className={styles.output}>
+			<li>
 				<b>هذا التاريخ قبل</b> {english2arabic(yearDiff)} سنة و{' '}
 				{english2arabic(monthDiff % 12)} شهر و{' '}
 				{english2arabic(
