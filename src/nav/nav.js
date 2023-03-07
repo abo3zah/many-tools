@@ -5,7 +5,7 @@ import { NavLinks } from './navLinks';
 import { NavLink } from 'react-router-dom';
 import { NavDropdown } from './navDropdown';
 
-export const Nav = () => {
+export const Nav = ({ menu, setMenu }) => {
 	return (
 		<>
 			<NavBar>
@@ -17,7 +17,7 @@ export const Nav = () => {
 						<NavLink to={`/dateConverter`}>التحويل</NavLink>
 					</NavDropdown>
 				</NavLinks>
-				<SmallerScreenButton />
+				<SmallerScreenButton menu={menu} setMenu={setMenu} />
 			</NavBar>
 		</>
 	);

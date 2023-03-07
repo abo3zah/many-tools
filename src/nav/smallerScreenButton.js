@@ -1,9 +1,14 @@
 import styles from './nav.module.css';
 
-export const SmallerScreenButton = () => (
-	<>
-		<button className={styles.navbarToggler} type='button'>
-			<span className={styles.navbarTogglerIcon}></span>
-		</button>
-	</>
-);
+export const SmallerScreenButton = ({ menu, setMenu }) => {
+	return (
+		<>
+			<button
+				className={styles.navbarToggler}
+				type='button'
+				onClick={() => setMenu(!menu)}>
+				{menu === false ? '➖' : '✖'}
+			</button>
+		</>
+	);
+};
