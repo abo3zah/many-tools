@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { HijriMonthsContext, MonthColorContext } from './monthHeader';
-import { aramcoVacation, schoolVacation } from '../data/vacations';
+import { AramcoVacationContext, SchoolVacationContext } from './calendar';
 import { english2arabic } from '../common/english2arabic';
 import { moment } from '../common/momentCalendar';
 import styles from './calendar.module.css';
@@ -12,6 +12,8 @@ export const Week = ({ year, month, day }) => {
 
 	const colors = useContext(MonthColorContext);
 	const arabicMonths = useContext(HijriMonthsContext);
+	const aramcoVacation = useContext(AramcoVacationContext);
+	const schoolVacation = useContext(SchoolVacationContext);
 
 	days.push(
 		<div
@@ -44,15 +46,10 @@ export const Week = ({ year, month, day }) => {
 
 		if (date.day() > 4) classes.push(styles.weekend);
 
-		aramcoVacation.forEach((vacation) => {
-			moment(date).isBetween(vacation[0], vacation[1], 'day', '[]') &&
-				classes.push(styles.aramcoVacation);
-		});
-
-		schoolVacation.forEach((vacation) => {
-			moment(date).isBetween(vacation[0], vacation[1], 'day', '[]') &&
-				classes.push(styles.schoolVacation);
-		});
+		if (aramcoVacation.includes(date.format('YYYY-M-D')))
+			classes.push(styles.aramcoVacation);
+		if (schoolVacation.includes(date.format('YYYY-M-D')))
+			classes.push(styles.schoolVacation);
 
 		date.format('iM') === '9' && classes.push(styles.ramdan);
 

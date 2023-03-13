@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useState, createContext } from 'react';
 import { Year } from './year';
 import { moment } from '../common/momentCalendar';
 import { english2arabic } from '../common/english2arabic';
+import { aramcoVacation, schoolVacation } from '../data/vacations';
 import styles from './calendar.module.css';
+
+export const AramcoVacationContext = createContext([]);
+export const SchoolVacationContext = createContext([]);
 
 export const Calendar = () => {
 	const [year, setYear] = useState(moment().format('YYYY'));
@@ -16,6 +20,28 @@ export const Calendar = () => {
 	const checkEnteredYear = (enteredYear) => {
 		setYear(enteredYear);
 	};
+
+	// create an array contains all the dates in aramcoVacation array
+	const aramcoVacationDates = [];
+	aramcoVacation.forEach((vacation) => {
+		let start = moment(vacation[0], 'YYYY-M-D');
+		let end = moment(vacation[1], 'YYYY-M-D');
+		while (start.isSameOrBefore(end)) {
+			aramcoVacationDates.push(start.format('YYYY-M-D'));
+			start.add(1, 'days');
+		}
+	});
+
+	// create an array contains all the dates in schoolVacation array
+	const schoolVacationDates = [];
+	schoolVacation.forEach((vacation) => {
+		let start = moment(vacation[0], 'YYYY-M-D');
+		let end = moment(vacation[1], 'YYYY-M-D');
+		while (start.isSameOrBefore(end)) {
+			schoolVacationDates.push(start.format('YYYY-M-D'));
+			start.add(1, 'days');
+		}
+	});
 
 	return (
 		<div className={styles.content}>
@@ -39,7 +65,12 @@ export const Calendar = () => {
 			</div>
 
 			<div className={styles.yearContainer}>
-				<Year year={+year} />
+				<AramcoVacationContext.Provider value={aramcoVacationDates}>
+					<SchoolVacationContext.Provider
+						value={schoolVacationDates}>
+						<Year year={+year} />
+					</SchoolVacationContext.Provider>
+				</AramcoVacationContext.Provider>
 			</div>
 			<div className={styles.legendContainer}>
 				<div className={styles.ramdan}>رمضان</div>
