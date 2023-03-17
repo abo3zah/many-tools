@@ -12,6 +12,7 @@ export const Nav = ({ menu, setMenu }) => {
 				<NavBrand />
 				<NavLinks>
 					<NavLink to='/'>الرئيسية</NavLink>
+					<NavLink to='/athan'>الأذان</NavLink>
 					<NavDropdown text='التاريخ'>
 						<NavLink to={'/calendar'}>التقويم</NavLink>
 						<NavLink to={`/dateConverter`}>التحويل</NavLink>

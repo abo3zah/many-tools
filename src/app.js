@@ -3,6 +3,7 @@ import { Nav } from './nav/nav';
 import { Main } from './main/main';
 import { Calendar } from './calendar/calendar';
 import { DateConverter } from './dateConverter/dateConverter';
+import { Athan } from './athan/athan';
 import { useState } from 'react';
 
 export const App = () => {
@@ -16,8 +17,12 @@ export const App = () => {
 					<Main setMenu={setMenu} />
 				) : (
 					<Routes>
-						<Route path='/' element={<Main />} />
+						<Route
+							path='/'
+							element={<Main setMenu={setMenu} />}
+						/>
 						<Route path='/calendar' element={<Calendar />} />
+						<Route path='/athan' element={<Athan />} />
 						<Route
 							path='/dateConverter'
 							element={<DateConverter />}
