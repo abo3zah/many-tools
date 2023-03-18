@@ -1,18 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAthanTimes } from './useAthanTimes';
 import styles from './athan.module.css';
 
 export const Athan = () => {
 	const [lat, setLat] = useState(24.774265);
 	const [lng, setLng] = useState(46.738586);
-	const athanTimes = useAthanTimes(lat, lng);
 
 	const getLocation = () => {
-		navigator.geolocation.getCurrentPosition((position) => {
-			setLat(position.coords.latitude);
-			setLng(position.coords.longitude);
-		});
+		setTimeout(() => {
+			navigator.geolocation.getCurrentPosition((position) => {
+				setLat(position.coords.latitude);
+				setLng(position.coords.longitude);
+			});
+		}, 1000);
 	};
+
+	const athanTimes = useAthanTimes(lat, lng);
 
 	return (
 		<div className={styles.container}>

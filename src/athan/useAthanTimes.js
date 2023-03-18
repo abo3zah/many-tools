@@ -23,7 +23,19 @@ export const useAthanTimes = (lat, lng) => {
 	};
 
 	useEffect(() => {
-		json(jsonUrl).then((d) => {
+		json(jsonUrl, (error, data) => {
+			if (error) {
+				data = {
+					'الفجر': '00:00',
+					'الشروق': '00:00',
+					'الظهر': '00:00',
+					'العصر': '00:00',
+					'المغرب': '00:00',
+					'العشاء': '00:00',
+					'منتصف الليل': '00:00',
+				};
+			}
+		}).then((d) => {
 			console.log(d.data);
 			setData({
 				'الفجر': athanTimeFormater(d, `Fajr`),
