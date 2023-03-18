@@ -8,7 +8,7 @@ const day = new Date().getDate() - 1;
 
 export const useAthanTimes = (lat, lng) => {
 	const [data, setData] = useState([]);
-	const jsonUrl = `http://api.aladhan.com/v1/calendar/${year}/${month}?latitude=${lat}&longitude=${lng}&method=4`;
+	const jsonUrl = `https://api.aladhan.com/v1/calendar/${year}/${month}?latitude=${lat}&longitude=${lng}&method=4`;
 
 	const athanTimeFormater = (d, prayer) => {
 		const timeArray = d.data[`${day - 1}`].timings[prayer].split(' ');
