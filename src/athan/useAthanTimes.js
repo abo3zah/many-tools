@@ -23,18 +23,12 @@ export const useAthanTimes = (lat, lng) => {
 	};
 
 	useEffect(() => {
-		json(jsonUrl, (error, data) => {
-			if (error) {
-				data = {
-					'الفجر': '00:00',
-					'الشروق': '00:00',
-					'الظهر': '00:00',
-					'العصر': '00:00',
-					'المغرب': '00:00',
-					'العشاء': '00:00',
-					'منتصف الليل': '00:00',
-				};
-			}
+		json(jsonUrl, {
+			headers: new Headers({
+				'Accept': 'application/json',
+				'Accept-Encoding': 'gzip, deflate',
+				'Accept-Language': 'en-US,en;q=0.9,ar;q=0.8',
+			}),
 		}).then((d) => {
 			console.log(d.data);
 			setData({
