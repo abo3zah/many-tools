@@ -23,17 +23,7 @@ export const useAthanTimes = (lat, lng) => {
 	};
 
 	useEffect(() => {
-		json(jsonUrl, {
-			headers: new Headers({
-				'Accept': 'application/json',
-				'Accept-Encoding': 'gzip, deflate',
-				'Accept-Language': 'en-US,en;q=0.9,ar;q=0.8',
-				'Host': 'api.aladhan.com',
-				'Origin': 'https://abo3zah.github.io/',
-				'Referer': 'https://abo3zah.github.io/many-tools/#/athan',
-			}),
-		}).then((d) => {
-			console.log(d.data);
+		json(jsonUrl).then((d) => {
 			setData({
 				'الفجر': athanTimeFormater(d, `Fajr`),
 				'الشروق': athanTimeFormater(d, `Sunrise`),
@@ -44,8 +34,6 @@ export const useAthanTimes = (lat, lng) => {
 				'منتصف الليل': athanTimeFormater(d, `Midnight`),
 			});
 		});
-
-		console.log(data);
 	}, [lat, lng]);
 
 	return data;
