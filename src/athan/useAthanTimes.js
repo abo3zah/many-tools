@@ -28,6 +28,9 @@ export const useAthanTimes = (lat, lng) => {
 				'Accept': 'application/json',
 				'Accept-Encoding': 'gzip, deflate',
 				'Accept-Language': 'en-US,en;q=0.9,ar;q=0.8',
+				'Host': 'api.aladhan.com',
+				'Origin': 'https://abo3zah.github.io/',
+				'Referer': 'https://abo3zah.github.io/many-tools/#/athan',
 			}),
 		}).then((d) => {
 			console.log(d.data);
