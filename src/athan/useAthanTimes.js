@@ -13,9 +13,9 @@ export const useAthanTimes = (lat, lng) => {
 	const athanTimeFormater = (d, prayer) => {
 		const timeArray = d.data[`${day - 1}`].timings[prayer].split(' ');
 		if (+timeArray[0].split(':')[0] > 12) {
-			timeArray[0] = `0${+timeArray[0].split(':')[0] - 12}:${
-				timeArray[0].split(':')[1]
-			} م`;
+			timeArray[0] = `${+timeArray[0].split(':')[0] - 12 < 10 ? '0' : ''}${
+				+timeArray[0].split(':')[0] - 12
+			}:${timeArray[0].split(':')[1]} م`;
 		} else {
 			timeArray[0] = `${timeArray[0]} ص`;
 		}
