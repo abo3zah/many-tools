@@ -11,8 +11,18 @@
 	display: grid;
 	justify-content: center;
 	align-items: center;
-	background-color: #fff;
-	border-radius: 4px;
+	gap: 0.5rem;
+
+	border: 1px solid black;
+	border-radius: 15px;
+	padding-bottom: 0.5rem;
+}
+
+.prayerContainerHeader {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(120px, 1fr));
+	font-size: 1.2rem;
+	text-align: center;
 }
 
 .prayerContainer {
@@ -20,25 +30,32 @@
 	grid-template-columns: repeat(2, minmax(120px, 1fr));
 	font-size: 1.2rem;
 	text-align: center;
-	border: 1px solid black;
-	border-top: 0px;
+	gap:0.5rem;
 }
 
 .header {
-	background-color: #555;
-	color: #fff;
-	padding: 0.5rem;
+	display: grid;
+	width: 100%;
+	gap: 0.5rem;
+	border-radius: 15px 15px 0 0;
+	background-color: antiquewhite;
+	padding-top: 0.5rem;
 }
 
-.prayerName {
-	font-weight: 600;
+.ColumnHeader {
+	font-weight: bold;
 }
 
 .city {
 	font-weight: 600;
 	text-align: center;
 	font-size: 1.2rem;
-	padding: 0.5rem 0;
-	background-color: #555;
-	color: white;
+}
+
+.prayerName {
+	font-weight: 600;
+}
+
+.currentPrayer {
+	color:brown
 }

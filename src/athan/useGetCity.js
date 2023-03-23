@@ -17,14 +17,14 @@ export const useGetCity = (lat, lng) => {
 			}),
 		}).then((d) => {
 			setData(
-				`${
-					d.documentElement
-						.getElementsByTagName('province', '')[0]
-						.textContent.split(' ')[0]
-				}, ${
-					d.documentElement
-						.getElementsByTagName('country', '')[0]
-						.textContent
+				`${d.documentElement
+					.getElementsByTagName('province', '')[0]
+					.textContent.replace(' Governorate', '')
+					.replace(' governorate', '')}, ${
+					d.documentElement.getElementsByTagName(
+						'country',
+						''
+					)[0].textContent
 				}`
 			);
 		});

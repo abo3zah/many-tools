@@ -1,48 +1,150 @@
-import { json } from 'd3';
 import { useState, useEffect } from 'react';
 import { english2arabic } from '../common/english2arabic';
-
-const year = new Date().getFullYear();
-const month = new Date().getMonth() + 1;
-const day = new Date().getDate() - 1;
+import {
+	Coordinates,
+	CalculationMethod,
+	PrayerTimes,
+	SunnahTimes,
+	Qibla,
+} from 'adhan';
+import { moment } from '../common/momentCalendar';
+import styles from './athan.module.css';
 
 export const useAthanTimes = (lat, lng) => {
 	const [data, setData] = useState([]);
-	const jsonUrl = `https://api.aladhan.com/v1/calendar/${year}/${month}?latitude=${lat}&longitude=${lng}&method=4`;
 
-	const athanTimeFormater = (d, prayer) => {
-		const timeArray = d.data[`${day - 1}`].timings[prayer].split(' ');
-		if (+timeArray[0].split(':')[0] > 12) {
-			timeArray[0] = `${+timeArray[0].split(':')[0] - 12 < 10 ? '0' : ''}${
-				+timeArray[0].split(':')[0] - 12
-			}:${timeArray[0].split(':')[1]} م`;
-		} else {
-			timeArray[0] = `${timeArray[0]} ص`;
-		}
-		return english2arabic(timeArray[0]);
+	const dateToString = (date) => {
+		return english2arabic(
+			date.toLocaleTimeString('ar-sa', {
+				hour: '2-digit',
+				minute: '2-digit',
+			})
+		);
 	};
 
 	useEffect(() => {
-		json(jsonUrl, {
-			headers: new Headers({
-				'Accept': 'application/json',
-				'Accept-Encoding': 'gzip, deflate',
-				'Accept-Language': 'en-US,en;q=0.9,ar;q=0.8',
-				'Host': 'api.aladhan.com',
-				'Origin': 'https://abo3zah.github.io/',
-				'Referer': 'https://abo3zah.github.io/many-tools/#/athan',
-			}),
-		}).then((d) => {
-			setData({
-				'الفجر': athanTimeFormater(d, `Fajr`),
-				'الشروق': athanTimeFormater(d, `Sunrise`),
-				'الظهر': athanTimeFormater(d, `Dhuhr`),
-				'العصر': athanTimeFormater(d, `Asr`),
-				'المغرب': athanTimeFormater(d, `Maghrib`),
-				'العشاء': athanTimeFormater(d, `Isha`),
-				'منتصف الليل': athanTimeFormater(d, `Midnight`),
-			});
-		});
+		const coordinates = new Coordinates(lat, lng);
+		const params = CalculationMethod.UmmAlQura();
+		params.adjustments.isha = moment().format('iM') === '9' ? 30 : 0;
+		const date = new Date();
+		const prayerTimes = new PrayerTimes(coordinates, date, params);
+		const sunnahTimes = new SunnahTimes(prayerTimes);
+
+		console.log(prayerTimes.currentPrayer());
+		console.log(Qibla(coordinates));
+
+		setData(
+			<>
+				<div className={styles.prayerContainer}>
+					<div
+						className={`${styles.prayerName} ${
+							prayerTimes.currentPrayer() === 'fajr'
+								? styles.currentPrayer
+								: ''
+						}`}>
+						{'الفجر'}
+					</div>
+					<div
+						className={`${
+							prayerTimes.currentPrayer() === 'fajr'
+								? styles.currentPrayer
+								: ''
+						}`}>
+						{dateToString(prayerTimes.fajr)}
+					</div>
+
+					<div
+						className={`${styles.prayerName} ${
+							prayerTimes.currentPrayer() === 'sunrise'
+								? styles.currentPrayer
+								: ''
+						}`}>
+						{'الشروق'}
+					</div>
+					<div
+						className={`${
+							prayerTimes.currentPrayer() === 'sunrise'
+								? styles.currentPrayer
+								: ''
+						}`}>
+						{dateToString(prayerTimes.sunrise)}
+					</div>
+
+					<div
+						className={`${styles.prayerName} ${
+							prayerTimes.currentPrayer() === 'dhuhr'
+								? styles.currentPrayer
+								: ''
+						}`}>
+						{'الظهر'}
+					</div>
+					<div
+						className={`${
+							prayerTimes.currentPrayer() === 'dhuhr'
+								? styles.currentPrayer
+								: ''
+						}`}>
+						{dateToString(prayerTimes.dhuhr)}
+					</div>
+
+					<div
+						className={`${styles.prayerName} ${
+							prayerTimes.currentPrayer() === 'asr'
+								? styles.currentPrayer
+								: ''
+						}`}>
+						{'العصر'}
+					</div>
+					<div
+						className={`${
+							prayerTimes.currentPrayer() === 'asr'
+								? styles.currentPrayer
+								: ''
+						}`}>
+						{dateToString(prayerTimes.asr)}
+					</div>
+
+					<div
+						className={`${styles.prayerName} ${
+							prayerTimes.currentPrayer() === 'maghrib'
+								? styles.currentPrayer
+								: ''
+						}`}>
+						{'المغرب'}
+					</div>
+					<div
+						className={`${
+							prayerTimes.currentPrayer() === 'maghrib'
+								? styles.currentPrayer
+								: ''
+						}`}>
+						{dateToString(prayerTimes.maghrib)}
+					</div>
+
+					<div
+						className={`${styles.prayerName} ${
+							prayerTimes.currentPrayer() === 'isha'
+								? styles.currentPrayer
+								: ''
+						}`}>
+						{'العشاء'}
+					</div>
+					<div
+						className={`${
+							prayerTimes.currentPrayer() === 'isha'
+								? styles.currentPrayer
+								: ''
+						}`}>
+						{dateToString(prayerTimes.isha)}
+					</div>
+
+					<div className={`${styles.prayerName}`}>
+						{'منتصف الليل'}
+					</div>
+					<div>{dateToString(sunnahTimes.middleOfTheNight)}</div>
+				</div>
+			</>
+		);
 	}, [lat, lng]);
 
 	return data;
