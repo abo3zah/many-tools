@@ -8,8 +8,8 @@ export const Header = ({ lat, lng }) => {
 
 	return (
 		<div className={styles.header}>
-			<div className={styles.city}>{city}</div>
-			<div className={styles.city}>
+			<div className={styles.headerText}>{city}</div>
+			<div className={styles.headerText}>
 				{english2arabic(moment().format('iD - iMMMM - iYYYY هـ'))}
 			</div>
 			<div className={styles.prayerContainerHeader}>
