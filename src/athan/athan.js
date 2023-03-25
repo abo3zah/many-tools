@@ -10,12 +10,15 @@ export const Athan = () => {
 	const [lng, setLng] = useState(46.738586);
 	const [coordinates, setCoordinates] = useState(new Coordinates(lat, lng));
 
-	setTimeout(() => {
-		navigator.geolocation.getCurrentPosition((position) => {
-			setLat(position.coords.latitude);
-			setLng(position.coords.longitude);
-		});
-	}, 1000);
+	useEffect(()=>{
+		setTimeout(() => {
+			navigator.geolocation.getCurrentPosition((position) => {
+				setLat(position.coords.latitude);
+				setLng(position.coords.longitude);
+			});
+		}, 1000);
+	},[])
+
 
 	useEffect(() => {
 		setCoordinates(new Coordinates(lat, lng));
