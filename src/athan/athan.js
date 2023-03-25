@@ -15,7 +15,7 @@ export const Athan = () => {
 
 	useEffect(() => {
 		setTimeout(() => {
-			navigator.geolocation.watchPosition((position) => {
+			navigator.geolocation.getCurrentPosition((position) => {
 				setLat(position.coords.latitude);
 				setLng(position.coords.longitude);
 				setHeading(position.coords.heading);

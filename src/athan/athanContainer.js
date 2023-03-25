@@ -23,7 +23,7 @@ export const AthanContainer = ({ coordinates, setPrayerTime }) => {
 	const date = new Date();
 	params.adjustments.isha =
 		+date.toLocaleDateString('en-SA', options) === 9 ? 30 : 0;
-	const prayerTimes = new PrayerTimes(coordinates, date, params);
+	let prayerTimes = new PrayerTimes(coordinates, date, params);
 	const sunnahTimes = new SunnahTimes(prayerTimes);
 
 	useEffect(() => {
@@ -40,12 +40,17 @@ export const AthanContainer = ({ coordinates, setPrayerTime }) => {
 		const time = new Date();
 
 		if (String(nextPrayerTime) === 'null') {
+			let tomorrow = new Date();
+			tomorrow.setDate(tomorrow.getDate() + 1);
 			const tommorowPrayers = new PrayerTimes(
 				coordinates,
-				time,
+				tomorrow,
 				params
 			);
-			const timeToPrayer = tommorowPrayers['fajr'] - time + (24*60*60*1000);
+			const timeToPrayer =
+				tommorowPrayers['fajr'] - time + 24 * 60 * 60 * 1000;
+
+			prayerTimes = tommorowPrayers;
 
 			setPrayerTime(parseInt(timeToPrayer));
 		} else {
