@@ -19,16 +19,10 @@ export const AthanContainer = ({ coordinates, setPrayerTime }) => {
 		month: 'numeric',
 	};
 
-	const prayerTimeOptions = {
-		hour: '2-digit',
-		minute: '2-digit',
-		second: '2-digit',
-	};
-
 	const params = CalculationMethod.UmmAlQura();
 	const date = new Date();
 	params.adjustments.isha =
-		date.toLocaleDateString('en-SA', options) === '9' ? 30 : 0;
+		+date.toLocaleDateString('en-SA', options) === 9 ? 30 : 0;
 	const prayerTimes = new PrayerTimes(coordinates, date, params);
 	const sunnahTimes = new SunnahTimes(prayerTimes);
 
