@@ -15,7 +15,6 @@
 
 	border: 1px solid black;
 	border-radius: 15px;
-	padding-bottom: 0.5rem;
 }
 
 .prayerContainerHeader {
@@ -65,4 +64,12 @@
 	padding: .5rem 0rem;
 	font-weight: bold;
 	text-align: center;
+}
+
+.timeToPrayerContainer{
+	padding-top: 0.5rem;
+	background-color: antiquewhite;
+	border-radius: 0 0 15px 15px;
+	text-align: center;
+	font-weight: bold;
 }

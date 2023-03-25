@@ -6,7 +6,7 @@ export const Main = ({ setMenu }) => {
 	const [links] = useState([
 		{ link: '/calendar', text: 'التقويم' },
 		{ link: '/dateConverter', text: 'التحويل' },
-		{ link: '/athan', text: 'ألأذان' },
+		{ link: '/athan', text: 'الأذان' },
 	]);
 
 	return (
