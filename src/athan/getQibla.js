@@ -2,7 +2,7 @@ import { Qibla } from 'adhan';
 import { useState } from 'react';
 import styles from './athan.module.css';
 
-export const GetQibla = ({ coordinates }) => {
+export const GetQibla = ({ coordinates, heading }) => {
 	const [qibla] = useState(Qibla(coordinates));
 
 	return (
@@ -50,35 +50,40 @@ export const GetQibla = ({ coordinates }) => {
 						r={35}
 						fill='none'
 						stroke='black'></circle>
-					<path
-						d='M40 16 l10 -10 l10 10 q-10 -5 -20 0'
-						fill='#006b3c'
-						stroke='black'
-						strokeWidth={1}
-						transform={`rotate(${qibla} 50 50)`}></path>
-					<text
-						x={50}
-						y={4}
-						textAnchor='middle'
-						fontSize={6}
-						fontWeight='bold'
-						transform={`rotate(${qibla} 50 50)`}>
-						القبلة
-					</text>
-					<path
-						d='M40 16 l10 -10 l10 10 q-10 -5 -20 0'
-						fill='red'
-						stroke='black'
-						strokeWidth={1}
-						transform={`rotate(0 50 50)`}></path>
-					<text
-						x={50}
-						y={5}
-						textAnchor='middle'
-						fontSize={6}
-						fontWeight='bold'>
-						الشمال
-					</text>
+					<g
+						transform={`rotate(${
+							heading === null ? 0 : +heading
+						} 50 50)`}>
+						<path
+							d='M40 16 l10 -10 l10 10 q-10 -5 -20 0'
+							fill='#006b3c'
+							stroke='black'
+							strokeWidth={1}
+							transform={`rotate(${qibla} 50 50)`}></path>
+						<text
+							x={50}
+							y={4}
+							textAnchor='middle'
+							fontSize={6}
+							fontWeight='bold'
+							transform={`rotate(${qibla} 50 50)`}>
+							القبلة
+						</text>
+						<path
+							d='M40 16 l10 -10 l10 10 q-10 -5 -20 0'
+							fill='red'
+							stroke='black'
+							strokeWidth={1}
+							transform={`rotate(0 50 50)`}></path>
+						<text
+							x={50}
+							y={5}
+							textAnchor='middle'
+							fontSize={6}
+							fontWeight='bold'>
+							الشمال
+						</text>
+					</g>
 				</g>
 			</svg>
 		</>

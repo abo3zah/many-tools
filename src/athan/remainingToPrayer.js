@@ -2,7 +2,6 @@ import styles from './athan.module.css';
 import { english2arabic } from '../common/english2arabic';
 
 export const RemainingToPrayer = ({ prayerTime }) => {
-
 	const msToTime = (duration) => {
 		let seconds = Math.floor((duration / 1000) % 60);
 		let minutes = Math.floor((duration / (1000 * 60)) % 60);
