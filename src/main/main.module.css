@@ -8,8 +8,9 @@
 }
 
 .containers a {
+	flex: 0 0 200px;
 	border: 1px solid black;
-	padding: 1rem 5rem;
+	padding: 1rem 0rem;
 	border-radius: 5px;
 	text-decoration: none;
 	font-weight: bold;
