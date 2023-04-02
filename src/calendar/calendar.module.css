@@ -1,3 +1,8 @@
+:root {
+	--school-bg-color: rgb(150, 245, 150);
+	--aramco-bg-color: lightblue;
+}
+
 .content {
 	background-color: white;
 	display: grid;
@@ -138,12 +143,12 @@
 .aramcoVacation,
 .aramcoVacation span {
 	color: black;
-	background-color: #87cefa;
+	background-color: var(--aramco-bg-color);
 }
 
 .schoolVacation,
 .schoolVacation span {
-	background-color: khaki;
+	background-color: var(--school-bg-color);
 	color: black;
 }
 
@@ -151,24 +156,24 @@
 	background: rgb(135, 206, 250);
 	background: -moz-linear-gradient(
 		90deg,
-		rgba(135, 206, 250, 1) 0%,
-		rgba(135, 206, 250, 1) 40%,
-		rgba(240, 230, 140, 1) 60%,
-		rgba(240, 230, 140, 1) 100%
+		var(--aramco-bg-color) 0%,
+		var(--aramco-bg-color) 40%,
+		var(--school-bg-color) 60%,
+		var(--school-bg-color) 100%
 	);
 	background: -webkit-linear-gradient(
 		90deg,
-		rgba(135, 206, 250, 1) 0%,
-		rgba(135, 206, 250, 1) 40%,
-		rgba(240, 230, 140, 1) 60%,
-		rgba(240, 230, 140, 1) 100%
+		var(--aramco-bg-color) 0%,
+		var(--aramco-bg-color) 40%,
+		var(--school-bg-color) 60%,
+		var(--school-bg-color) 100%
 	);
 	background: linear-gradient(
 		90deg,
-		rgba(135, 206, 250, 1) 0%,
-		rgba(135, 206, 250, 1) 40%,
-		rgba(240, 230, 140, 1) 60%,
-		rgba(240, 230, 140, 1) 100%
+		var(--aramco-bg-color) 0%,
+		var(--aramco-bg-color) 40%,
+		var(--school-bg-color) 60%,
+		var(--school-bg-color) 100%
 	);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#87cefa",endColorstr="#f0e68c",GradientType=1);
 }

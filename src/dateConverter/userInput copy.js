@@ -6,41 +6,38 @@ import { YearPicker } from './yearPicker';
 import { MonthPicker } from './monthPicker';
 import { Days } from './days';
 import { DateToDate } from './dateToDate';
+import { moment } from '../common/momentCalendar';
 import styles from './DateConverter.module.css';
-import {
-	setBeginingofMonth,
-	getDate,
-	getMonth,
-	getYear,
-	getFullDate,
-	getRequiredDate,
-	getCurrentDate,
-} from '../common/dateOptionsFunctions';
 
 export const UserInput = ({ gergInput }) => {
 	// states
-	const [selectedDate, setSelectedDate] = useState(getCurrentDate());
+	const [selectedDate, setSelectedDate] = useState(moment());
 	const [dayNumForStartMonth, setDayNumForStartMonth] = useState(0);
-	const [year, setYear] = useState(getYear(selectedDate, gergInput));
-	const [month, setMonth] = useState(getMonth(selectedDate, gergInput));
+	const [year, setYear] = useState(
+		moment(selectedDate).format(gergInput ? 'YYYY' : 'iYYYY')
+	);
+	const [month, setMonth] = useState(
+		moment(selectedDate).format(gergInput ? 'M' : 'iM')
+	);
 
 	// change the states dependant on the user selection changes
 	useEffect(() => {
 		setDayNumForStartMonth(
-			setBeginingofMonth(selectedDate, gergInput).getDay()
+			moment(selectedDate)
+				.startOf(gergInput ? 'month' : 'iMonth')
+				.day()
 		);
-		setYear(getYear(selectedDate, gergInput));
-		setMonth(getMonth(selectedDate, gergInput));
+		setYear(moment(selectedDate).format(gergInput ? 'YYYY' : 'iYYYY'));
+		setMonth(moment(selectedDate).format(gergInput ? 'M' : 'iM'));
 	}, [selectedDate]);
 
-	// adjust the date if year or month changed
 	useEffect(() => {
 		setSelectedDate(
-			getRequiredDate(
-				year,
-				month,
-				gergInput ? selectedDate.getDate() : getDate(selectedDate),
-				gergInput
+			moment(
+				`${year}/${month}/${selectedDate.format(
+					gergInput ? 'D' : 'iD'
+				)}`,
+				gergInput ? 'YYYY/M/D' : 'iYYYY/iM/iD'
 			)
 		);
 	}, [year, month]);
@@ -54,14 +51,20 @@ export const UserInput = ({ gergInput }) => {
 				<input
 					className={styles.inputs}
 					type='text'
-					value={getFullDate(selectedDate, gergInput)}
+					value={selectedDate.format(
+						gergInput
+							? 'D / MMMM / YYYY'
+							: 'iD / iMMMM / iYYYY هـ'
+					)}
 					placeholder='D/M/YYYY'
-					readOnly
 				/>
 				<div className={styles.popupDiv}>
 					<DatePickerHeader
-						date={selectedDate}
-						gergInput={gergInput}
+						date={selectedDate.format(
+							gergInput
+								? 'DD / MMM / YYYY'
+								: 'iDD / iMMM / iYYYY هـ'
+						)}
 					/>
 
 					<YearPicker

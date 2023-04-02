@@ -1,9 +1,12 @@
+import { getFullDate } from '../common/dateOptionsFunctions';
 import styles from './DateConverter.module.css';
 
-export const DatePickerHeader = ({ date }) => {
+export const DatePickerHeader = ({ date, gergInput }) => {
 	return (
 		<>
-			<span className={styles.datePickerHeader}>{date}</span>
+			<span className={styles.datePickerHeader}>
+				{getFullDate(date, gergInput)}
+			</span>
 		</>
 	);
 };

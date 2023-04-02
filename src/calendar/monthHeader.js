@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react';
-import { moment } from '../common/momentCalendar';
 import { weekDaysMin } from '../common/months';
+import { setEndingofMonth } from '../common/dateOptionsFunctions';
 import styles from './calendar.module.css';
 
 export const MonthColorContext = createContext([
@@ -13,8 +13,10 @@ export const HijriMonthsContext = createContext([]);
 
 export const MonthHeader = ({ children, year, month }) => {
 	let arabicMonths = [];
-	let currentDate = moment(`${year}-${month}-1`, 'YYYY-M-D');
-	let monthName = currentDate.format('MMMM');
+	let currentDate = new Date(`${year}-${month}-1`);
+	let monthName = currentDate.toLocaleString('ar', {
+		month: 'long',
+	});
 	const [colors] = useState([
 		styles.firstMonthColor,
 		styles.secondMonthColor,
@@ -22,11 +24,16 @@ export const MonthHeader = ({ children, year, month }) => {
 	]);
 
 	for (let i = 0; i < 3; i++) {
-		let arabicMonth = currentDate.format('iMMM');
+		let arabicMonth = currentDate.toLocaleString('ar', {
+			calendar:"islamic-umalqura",
+			month: 'long',
+		});
 		!arabicMonths.includes(arabicMonth) && arabicMonths.push(arabicMonth);
-		currentDate.date() === 1
-			? currentDate.add(14, 'days')
-			: currentDate.endOf('month');
+		if (currentDate.getDate() === 1){
+			currentDate.setDate(currentDate.getDate() + 14)
+		} else {
+			currentDate = setEndingofMonth(currentDate, true);
+		}
 	}
 
 	return (

@@ -1,5 +1,4 @@
 import styles from './DateConverter.module.css';
-import { moment } from '../common/momentCalendar';
 
 export const YearPicker = ({
 	selectedYear,
@@ -14,25 +13,7 @@ export const YearPicker = ({
 	let end = gergInput ? 2053 : 1475;
 
 	const setDate = (e) => {
-		let month = gergInput
-			? selectedDate.month() + 1
-			: selectedDate.iMonth() + 1;
-		let day = gergInput ? selectedDate.date() : selectedDate.iDate();
-		if (
-			moment(
-				`${e.target.value}-${month}-${day}`,
-				gergInput ? 'YYYY-M-D' : 'iYYYY-iM-iD'
-			).isValid()
-		) {
-			setYear(e.target.value);
-		} else {
-			setSelectedDate(
-				moment(
-					`${e.target.value}-${month}-${28}`,
-					gergInput ? 'YYYY-M-D' : 'iYYYY-iM-iD'
-				)
-			);
-		}
+		setYear(e.target.value);
 	};
 
 	for (let i = start; i <= end; i++) {
