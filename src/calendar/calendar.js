@@ -1,9 +1,8 @@
 import { useState, createContext } from 'react';
 import { Year } from './year';
-import { moment } from '../common/momentCalendar';
 import { english2arabic } from '../common/english2arabic';
 import { aramcoVacation, schoolVacation } from '../data/vacations';
-import { getYear } from '../common/dateOptionsFunctions'
+import { getYear } from '../common/dateOptionsFunctions';
 import styles from './calendar.module.css';
 
 export const AramcoVacationContext = createContext([]);
@@ -25,7 +24,7 @@ export const Calendar = () => {
 		let end = new Date(vacation[1]);
 		while (start.valueOf() <= end.valueOf()) {
 			aramcoVacationDates.push(start.toISOString());
-			start.setDate(start.getDate()+1);
+			start.setDate(start.getDate() + 1);
 		}
 	});
 

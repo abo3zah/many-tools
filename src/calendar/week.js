@@ -58,8 +58,6 @@ export const Week = ({ year, month, day }) => {
 
 		getMonth(date) === 9 && classes.push(styles.ramdan);
 
-		console.log(date.toISOString())
-
 		days.push(
 			<div
 				key={`${month}date${date.toISOString()}`}

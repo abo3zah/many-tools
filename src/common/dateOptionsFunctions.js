@@ -141,7 +141,6 @@ const relativeDateFormat = (number, select = 1) => {
 };
 
 const arabicAnd = (days, months, years = 0, select = 1) => {
-	console.log(days, months, years)
 	return select === 1
 		? `${Math.abs(months) >= 1 && Math.abs(days) >= 1 ? 'و' : ''}`
 		: `${
