@@ -1,27 +1,27 @@
 import { MonthHeader } from './monthHeader';
 import { Week } from './week';
-import { getWeekNum } from '../common/dateOptionsFunctions';
+import { moment } from '../common/momentCalendar';
 
 export const Month = ({ year, month }) => {
 	let weeks = [];
-	let firstDay = new Date(year, month-1, 1);
-	let firstWeek = getWeekNum(firstDay);
-	let currentWeek = getWeekNum(firstDay);
-	let dayNumber = firstDay.getDay();
+	let firstDay = moment(`${year}-${month}-1`, 'YYYY-M-D');
+	let firstWeek = firstDay.week();
+	let currentWeek = firstDay.week();
+	let dayNumber = firstDay.day();
 
-	while (firstDay.getMonth() + 1 === month) {
+	while (firstDay.month() + 1 === month) {
 		weeks.push(
 			<Week
 				year={year}
 				month={month}
-				day={firstDay.getDate()}
+				day={firstDay.date()}
 				key={`${month}w${currentWeek}`}
 			/>
 		);
 		if (currentWeek === firstWeek) {
-			firstDay.setDate(firstDay.getDate() + 7 - dayNumber);
+			firstDay.add(7 - dayNumber, 'days');
 		} else {
-			firstDay.setDate(firstDay.getDate() + 7);
+			firstDay.add(7, 'days');
 		}
 		currentWeek += 1;
 	}
