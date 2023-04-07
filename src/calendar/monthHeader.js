@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react';
-import { moment } from '../common/momentCalendar';
 import { weekDaysMin } from '../common/months';
+import { EnhancedDate } from '../common/enhancedDate';
 import styles from './calendar.module.css';
 
 export const MonthColorContext = createContext([
@@ -13,8 +13,8 @@ export const HijriMonthsContext = createContext([]);
 
 export const MonthHeader = ({ children, year, month }) => {
 	let arabicMonths = [];
-	let currentDate = moment(`${year}-${month}-1`, 'YYYY-M-D');
-	let monthName = currentDate.format('MMMM');
+	let currentDate = new EnhancedDate(`${year}-${month}-1`);
+	let monthName = currentDate.print('MMMM', 'ar-SA');
 	const [colors] = useState([
 		styles.firstMonthColor,
 		styles.secondMonthColor,
@@ -22,11 +22,11 @@ export const MonthHeader = ({ children, year, month }) => {
 	]);
 
 	for (let i = 0; i < 3; i++) {
-		let arabicMonth = currentDate.format('iMMM');
+		let arabicMonth = currentDate.print('iMMM', 'ar-SA');
 		!arabicMonths.includes(arabicMonth) && arabicMonths.push(arabicMonth);
-		currentDate.date() === 1
-			? currentDate.add(14, 'days')
-			: currentDate.endOf('month');
+		currentDate.getDate() === 1
+			? currentDate.add(14)
+			: currentDate.endOf();
 	}
 
 	return (

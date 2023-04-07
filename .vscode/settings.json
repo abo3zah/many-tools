@@ -2,6 +2,6 @@
 	"emmet.includeLanguages": {
 		"javascript": "javascriptreact"
 	},
-	"files.autoSave": "afterDelay",
+	"files.autoSave": "off",
 	"editor.formatOnPaste": true
 }

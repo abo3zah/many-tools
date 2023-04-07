@@ -2,13 +2,13 @@ import { useContext } from 'react';
 import { HijriMonthsContext, MonthColorContext } from './monthHeader';
 import { AramcoVacationContext, SchoolVacationContext } from './calendar';
 import { english2arabic } from '../common/english2arabic';
-import { moment } from '../common/momentCalendar';
+import { EnhancedDate } from '../common/enhancedDate';
 import styles from './calendar.module.css';
 
 export const Week = ({ year, month, day }) => {
 	let days = [];
-	let date = moment(`${year}-${month}-${day}`, 'YYYY-M-D');
-	let dayNum = date.day();
+	let date = new EnhancedDate(`${year}-${month}-${day}`);
+	let dayNum = date.getDay();
 
 	const colors = useContext(MonthColorContext);
 	const arabicMonths = useContext(HijriMonthsContext);
@@ -17,56 +17,57 @@ export const Week = ({ year, month, day }) => {
 
 	days.push(
 		<div
-			key={`${month}date${date.format()}w`}
+			key={`${month}date${date.print()}w`}
 			className={styles.weekNumber}>
-			{date.week()}
+			{date.getWeek()}
 		</div>
 	);
 
-	date.subtract(dayNum, 'days');
+	date.add(-dayNum);
 
 	for (let i = 0; i < dayNum; i++) {
 		days.push(
 			<div
 				className={styles.emptyFileds}
-				key={`${month}date${date.format()}`}></div>
+				key={`${month}date${date.print()}`}></div>
 		);
-		date.add(1, 'days');
+		date.add(1);
 	}
 
 	for (let i = 0; i < 7 - dayNum; i++) {
-		if (date.month() + 1 !== month) {
-			date.add(1, 'days');
+		if (date.getMonth() + 1 !== month) {
+			date.add(1);
 			continue;
 		}
 
 		let classes = [];
 
-		if (moment().startOf('day').isSame(date)) classes.push(styles.today);
+		if (new EnhancedDate().startOf('d').isSame(date))
+			classes.push(styles.today);
 
-		if (date.day() > 4) classes.push(styles.weekend);
+		if (date.getDay() > 4) classes.push(styles.weekend);
 
-		if (aramcoVacation.includes(date.format('YYYY-M-D')))
+		if (aramcoVacation.includes(date.print('YYYY-M-D')))
 			classes.push(styles.aramcoVacation);
-		if (schoolVacation.includes(date.format('YYYY-M-D')))
+		if (schoolVacation.includes(date.print('YYYY-M-D')))
 			classes.push(styles.schoolVacation);
 
-		date.format('iM') === '9' && classes.push(styles.ramdan);
+		date.print('iM') === '9' && classes.push(styles.ramdan);
 
 		days.push(
 			<div
-				key={`${month}date${date.format()}`}
+				key={`${month}date${date.print()}`}
 				className={`${styles.dateContainer} ${classes.join(' ')}`}>
-				<span className={styles.georgian}>{date.date()}</span>
+				<span className={styles.georgian}>{date.getDate()}</span>
 				<span
 					className={`${styles.hijri} ${
-						colors[arabicMonths.indexOf(date.format('iMMM'))]
+						colors[arabicMonths.indexOf(date.print('iMMM'))]
 					}`}>
-					{english2arabic(date.format('iD'))}
+					{english2arabic(date.print('iD'))}
 				</span>
 			</div>
 		);
-		date.add(1, 'days');
+		date.add(1);
 	}
 
 	return <>{days}</>;

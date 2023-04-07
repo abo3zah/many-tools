@@ -1,20 +1,20 @@
 import { useState, createContext } from 'react';
 import { Year } from './year';
-import { moment } from '../common/momentCalendar';
 import { english2arabic } from '../common/english2arabic';
 import { aramcoVacation, schoolVacation } from '../data/vacations';
+import { EnhancedDate } from '../common/enhancedDate';
 import styles from './calendar.module.css';
 
 export const AramcoVacationContext = createContext([]);
 export const SchoolVacationContext = createContext([]);
 
 export const Calendar = () => {
-	const [year, setYear] = useState(moment().format('YYYY'));
+	const [year, setYear] = useState(new EnhancedDate().print('YYYY'));
 	const firstDay = english2arabic(
-		moment(`${year}-1-1`, 'YYYY-M-D').format('iYYYY')
+		new EnhancedDate(year, 0, 1).print('iYYYY')
 	);
 	const lastDay = english2arabic(
-		moment(`${year}-12-31`, 'YYYY-M-D').format('iYYYY')
+		new EnhancedDate(year, 11, 31).print('iYYYY')
 	);
 
 	const checkEnteredYear = (enteredYear) => {
@@ -24,22 +24,22 @@ export const Calendar = () => {
 	// create an array contains all the dates in aramcoVacation array
 	const aramcoVacationDates = [];
 	aramcoVacation.forEach((vacation) => {
-		let start = moment(vacation[0], 'YYYY-M-D');
-		let end = moment(vacation[1], 'YYYY-M-D');
+		let start = new EnhancedDate(vacation[0]);
+		let end = new EnhancedDate(vacation[1]);
 		while (start.isSameOrBefore(end)) {
-			aramcoVacationDates.push(start.format('YYYY-M-D'));
-			start.add(1, 'days');
+			aramcoVacationDates.push(start.print('YYYY-M-D'));
+			start.add(1);
 		}
 	});
 
 	// create an array contains all the dates in schoolVacation array
 	const schoolVacationDates = [];
 	schoolVacation.forEach((vacation) => {
-		let start = moment(vacation[0], 'YYYY-M-D');
-		let end = moment(vacation[1], 'YYYY-M-D');
+		let start = new EnhancedDate(vacation[0]);
+		let end = new EnhancedDate(vacation[1]);
 		while (start.isSameOrBefore(end)) {
-			schoolVacationDates.push(start.format('YYYY-M-D'));
-			start.add(1, 'days');
+			schoolVacationDates.push(start.print('YYYY-M-D'));
+			start.add(1);
 		}
 	});
 

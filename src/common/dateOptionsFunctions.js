@@ -14,6 +14,7 @@ const dayOption = {
 	day: 'numeric',
 };
 
+// *✅
 export const setBeginingofMonth = (date, gergInput = false) => {
 	let newDate = new Date(date);
 	let diff =
@@ -25,11 +26,13 @@ export const setBeginingofMonth = (date, gergInput = false) => {
 	return newDate;
 };
 
+// *✅
 export const getWeekNum = (date) => {
 	var onejan = new Date(date.getFullYear(), 0, 1);
 	return Math.ceil(((date - onejan) / 86400000 + onejan.getDay() + 1) / 7);
 }
 
+// *✅
 export const setEndingofMonth = (date, gergInput = false) => {
 	let [, month, year] = getDateComponentFromDate(date, gergInput);
 
@@ -46,6 +49,7 @@ export const setEndingofMonth = (date, gergInput = false) => {
 	return newDate;
 };
 
+// *✅
 export const getDate = (date, gergInput = false) => {
 	return gergInput
 		? date.getDate()
@@ -55,6 +59,7 @@ export const getDate = (date, gergInput = false) => {
 		  });
 };
 
+// *✅
 export const getDay = (date, gergInput = false) => {
 	return gergInput
 		? +date.getDay()
@@ -64,6 +69,7 @@ export const getDay = (date, gergInput = false) => {
 		  });
 };
 
+// *✅
 export const getMonth = (date, gergInput = false) => {
 	return gergInput
 		? +date.getMonth() + 1
@@ -73,6 +79,7 @@ export const getMonth = (date, gergInput = false) => {
 		  });
 };
 
+// *✅
 export const getYear = (date, gergInput = false) => {
 	return gergInput
 		? +date.getFullYear()
@@ -84,6 +91,7 @@ export const getYear = (date, gergInput = false) => {
 				.split(' ')[0];
 };
 
+// *✅
 export const getFullDate = (date, gergInput = false) => {
 	return gergInput
 		? date.toLocaleDateString('ar', {
@@ -96,10 +104,12 @@ export const getFullDate = (date, gergInput = false) => {
 		  });
 };
 
+// *✅
 const toDateValue = (year, month, day) => {
 	return +year * ((19 * 354 + 11 * 355) / 30) + +month * 29.53055 + +day;
 };
 
+// *✅
 export const getCurrentDate = () => {
 	return new Date(
 		new Date().getFullYear(),
@@ -244,6 +254,7 @@ const calculateDiffFromCurrent = (year, month, day) => {
 	return adjustDate(currentDateValue - estimateDateValue, year, month, day);
 };
 
+// *✅
 const checkAndAdjust = (estimatedDate, year, month, day, count = 0) => {
 	const [estimatedDay, estimatedMonth, estimatedYear] =
 		getDateComponentFromDate(estimatedDate);
@@ -270,6 +281,7 @@ const checkAndAdjust = (estimatedDate, year, month, day, count = 0) => {
 	return checkAndAdjust(estimatedDate, year, month, day, count);
 };
 
+// *✅
 const adjustDate = (diff, year, month, day) => {
 	let estimatedDate = getCurrentDate();
 
@@ -280,6 +292,7 @@ const adjustDate = (diff, year, month, day) => {
 	return estimatedDate;
 };
 
+// *✅
 export const getRequiredDate = (year, month, day, gergInput = false) => {
 	if (gergInput) {
 		return new Date(year, month - 1, day);
