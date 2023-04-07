@@ -1,6 +1,7 @@
 :root {
-	--school-bg-color: rgb(150, 245, 150);
-	--aramco-bg-color: lightblue;
+	--school-bg-color: #00843d;
+	--aramco-bg-color: #0033a0;
+	--ramdan-color: #26a8ab;
 }
 
 .content {
@@ -131,7 +132,7 @@
 
 .ramdan,
 .ramdan span {
-	background-color: cadetblue;
+	background-color: var(--ramdan-color);
 	color: white;
 }
 
@@ -142,14 +143,14 @@
 
 .aramcoVacation,
 .aramcoVacation span {
-	color: black;
+	color: white;
 	background-color: var(--aramco-bg-color);
 }
 
 .schoolVacation,
 .schoolVacation span {
 	background-color: var(--school-bg-color);
-	color: black;
+	color: white;
 }
 
 .schoolVacation.aramcoVacation {
