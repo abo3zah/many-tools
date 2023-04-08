@@ -13,7 +13,7 @@ export const HijriMonthsContext = createContext([]);
 
 export const MonthHeader = ({ children, year, month }) => {
 	let arabicMonths = [];
-	let currentDate = new EnhancedDate(`${year}-${month}-1`);
+	let currentDate = new EnhancedDate(year, month - 1, 1);
 	let monthName = currentDate.print('MMMM', 'ar-SA');
 	const [colors] = useState([
 		styles.firstMonthColor,

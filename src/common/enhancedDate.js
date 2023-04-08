@@ -290,4 +290,173 @@ export class EnhancedDate extends Date {
 
 		return this;
 	}
+
+	relativeDateFormat(number, select = 1) {
+		let sentance = [];
+		switch (select) {
+			case 1:
+				sentance = ['يوم', 'يومين', 'أيام'];
+				break;
+			case 2:
+				sentance = ['شهر', 'شهرين', 'أشهر'];
+				break;
+			case 3:
+				sentance = ['سنة', 'سنتين', 'سنوات'];
+				break;
+
+			default:
+				break;
+		}
+
+		number = Math.abs(number);
+
+		return `${number > 2 ? number : ''} ${
+			number < 1
+				? ''
+				: number == 1
+				? sentance[0]
+				: number == 2
+				? sentance[1]
+				: number < 11
+				? sentance[2]
+				: sentance[0]
+		}`;
+	}
+
+	arabicAnd(years, months, days = 0, select = 1) {
+		return select === 1
+			? `${Math.abs(months) >= 1 && Math.abs(years) >= 1 ? 'و' : ''}`
+			: `${
+					Math.abs(days) >= 1 &&
+					(Math.abs(years) >= 1 || Math.abs(months) >= 1)
+						? 'و'
+						: ''
+			  }`;
+	}
+
+	findDifference(comparedDate) {
+		comparedDate.setHours(0, 0, 0, 0);
+
+		var currentYear = comparedDate.getFullYear();
+		var currentMonth = comparedDate.getMonth();
+		var currentDay = comparedDate.getDate();
+
+		var year = this.getFullYear();
+		var month = this.getMonth();
+		var day = this.getDate();
+
+		var differenceInYears = currentYear - year;
+		var differenceInMonths = currentMonth - month;
+		var differenceInDays = currentDay - day;
+
+		if (comparedDate.valueOf() >= this.valueOf()) {
+			if (differenceInDays < 0) {
+				differenceInMonths -= 1;
+				differenceInDays += 30;
+			}
+
+			if (differenceInMonths < 0) {
+				differenceInYears -= 1;
+				differenceInMonths += 12;
+			}
+		}
+
+		var years = differenceInYears;
+		var months = differenceInMonths;
+		var days = differenceInDays;
+
+		let message = 'هو تاريخ اليوم';
+		if (comparedDate.valueOf() > this.valueOf()) {
+			message = `قبل ${this.relativeDateFormat(
+				years,
+				3
+			)} ${this.arabicAnd(years, months)} ${this.relativeDateFormat(
+				months,
+				2
+			)} ${this.arabicAnd(
+				years,
+				months,
+				days,
+				2
+			)} ${this.relativeDateFormat(days)}`;
+		} else if (comparedDate.valueOf() < this.valueOf()) {
+			message = `سيكون بعد ${this.relativeDateFormat(
+				years,
+				3
+			)} ${this.arabicAnd(years, months)} ${this.relativeDateFormat(
+				months,
+				2
+			)} ${this.arabicAnd(
+				years,
+				months,
+				days,
+				2
+			)} ${this.relativeDateFormat(days)}`;
+		}
+
+		return message;
+	}
+
+	findHijriDifference(comparedDate) {
+		comparedDate.startOf('d');
+
+		var currentYear = +comparedDate.print('iYYYY');
+		var currentMonth = +comparedDate.print('iM');
+		var currentDay = +comparedDate.print('iD');
+
+		var year = +this.print('iYYYY');
+		var month = +this.print('iM');
+		var day = +this.print('iD');
+
+		var differenceInYears = currentYear - year;
+		var differenceInMonths = currentMonth - month;
+		var differenceInDays = currentDay - day;
+
+		if (comparedDate.valueOf() >= this.valueOf()) {
+			if (differenceInDays < 0) {
+				differenceInMonths -= 1;
+				differenceInDays += 30;
+			}
+
+			if (differenceInMonths < 0) {
+				differenceInYears -= 1;
+				differenceInMonths += 12;
+			}
+		}
+
+		var years = differenceInYears;
+		var months = differenceInMonths;
+		var days = differenceInDays;
+
+		let message = 'هو تاريخ اليوم';
+		if (comparedDate.valueOf() > this.valueOf()) {
+			message = `قبل ${this.relativeDateFormat(
+				years,
+				3
+			)} ${this.arabicAnd(years, months)} ${this.relativeDateFormat(
+				months,
+				2
+			)} ${this.arabicAnd(
+				years,
+				months,
+				days,
+				2
+			)} ${this.relativeDateFormat(days)}`;
+		} else if (comparedDate.valueOf() < this.valueOf()) {
+			message = `سيكون بعد ${this.relativeDateFormat(
+				years,
+				3
+			)} ${this.arabicAnd(years, months)} ${this.relativeDateFormat(
+				months,
+				2
+			)} ${this.arabicAnd(
+				years,
+				months,
+				days,
+				2
+			)} ${this.relativeDateFormat(days)}`;
+		}
+
+		return message;
+	}
 }

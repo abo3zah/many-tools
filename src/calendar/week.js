@@ -1,13 +1,12 @@
 import { useContext } from 'react';
 import { HijriMonthsContext, MonthColorContext } from './monthHeader';
 import { AramcoVacationContext, SchoolVacationContext } from './calendar';
-import { english2arabic } from '../common/english2arabic';
 import { EnhancedDate } from '../common/enhancedDate';
 import styles from './calendar.module.css';
 
 export const Week = ({ year, month, day }) => {
 	let days = [];
-	let date = new EnhancedDate(`${year}-${month}-${day}`);
+	let date = new EnhancedDate(year, month - 1, day);
 	let dayNum = date.getDay();
 
 	const colors = useContext(MonthColorContext);
@@ -61,9 +60,13 @@ export const Week = ({ year, month, day }) => {
 				<span className={styles.georgian}>{date.getDate()}</span>
 				<span
 					className={`${styles.hijri} ${
-						colors[arabicMonths.indexOf(date.print('iMMM'))]
+						colors[
+							arabicMonths.indexOf(
+								date.print('iMMM', 'ar-SA')
+							)
+						]
 					}`}>
-					{english2arabic(date.print('iD'))}
+					{date.print('iD', 'ar-SA')}
 				</span>
 			</div>
 		);

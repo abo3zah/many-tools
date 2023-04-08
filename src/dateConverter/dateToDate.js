@@ -1,21 +1,29 @@
 import styles from './DateConverter.module.css';
-import { useEffect, useState } from 'react';
-import { moment } from '../common/momentCalendar';
 import { english2arabic } from '../common/english2arabic';
-import {
-	getFullDate,
-	findDateDifference,
-} from '../common/dateOptionsFunctions';
+import { EnhancedDate } from '../common/enhancedDate';
 
 export const DateToDate = ({ selectedDate, gergInput }) => {
 	return (
 		<ul className={styles.output}>
 			<li>
 				<b>التاريخ {gergInput ? 'الهجري' : 'الميلادي'} هو </b>
-				{english2arabic(getFullDate(selectedDate, !gergInput))}
+				{selectedDate.print(
+					gergInput
+						? 'WDD iD - iMMM - iYYYY هـ'
+						: 'WDD D - MMM - YYYY م',
+					'ar-SA'
+				)}
 			</li>
 			<li>
-				<b>هذا التاريخ</b> {english2arabic(findDateDifference(selectedDate))} بالميلادي
+				<b>هذا التاريخ</b>{' '}
+				{english2arabic(
+					gergInput
+						? selectedDate.findDifference(new EnhancedDate())
+						: selectedDate.findHijriDifference(
+								new EnhancedDate()
+						  )
+				)}
+				{gergInput ? ' بالميلادي' : ' بالهجري'}
 			</li>
 		</ul>
 	);

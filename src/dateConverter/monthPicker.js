@@ -1,13 +1,7 @@
 import { hijriMonths, gergMonths } from '../common/months';
 import styles from './DateConverter.module.css';
 
-export const MonthPicker = ({
-	selectedMonth,
-	setMonth,
-	gergInput,
-	selectedDate,
-	setSelectedDate,
-}) => {
+export const MonthPicker = ({ selectedMonth, setMonth, gergInput }) => {
 	let months = [];
 
 	const setDate = (e) => {

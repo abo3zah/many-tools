@@ -1,6 +1,5 @@
 import { useState, createContext } from 'react';
 import { Year } from './year';
-import { english2arabic } from '../common/english2arabic';
 import { aramcoVacation, schoolVacation } from '../data/vacations';
 import { EnhancedDate } from '../common/enhancedDate';
 import styles from './calendar.module.css';
@@ -10,13 +9,8 @@ export const SchoolVacationContext = createContext([]);
 
 export const Calendar = () => {
 	const [year, setYear] = useState(new EnhancedDate().print('YYYY'));
-	const firstDay = english2arabic(
-		new EnhancedDate(year, 0, 1).print('iYYYY')
-	);
-	const lastDay = english2arabic(
-		new EnhancedDate(year, 11, 31).print('iYYYY')
-	);
-
+	const firstDay = new EnhancedDate(year, 0, 1).print('iYYYY', 'ar-SA');
+	const lastDay = new EnhancedDate(year, 11, 31).print('iYYYY', 'ar-SA');
 	const checkEnteredYear = (enteredYear) => {
 		setYear(enteredYear);
 	};

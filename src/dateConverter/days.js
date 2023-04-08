@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-	setBeginingofMonth,
-	setEndingofMonth,
-	getDate,
-} from '../common/dateOptionsFunctions';
+import { EnhancedDate } from '../common/enhancedDate';
 
 import styles from './DateConverter.module.css';
 
@@ -12,29 +8,35 @@ export const Days = ({ selectedDate, setSelectedDate, gergInput }) => {
 
 	useEffect(() => {
 		let daysTemp = [];
-		let startOfMonth = setBeginingofMonth(selectedDate, gergInput);
-		let endOfMonth = setEndingofMonth(selectedDate, gergInput);
-		let currentDate = new Date(startOfMonth);
+		let startOfMonth = new EnhancedDate(selectedDate).startOf(
+			gergInput ? 'm' : 'im'
+		);
+		let endOfMonth = new EnhancedDate(selectedDate).endOf(
+			gergInput ? 'm' : 'im'
+		);
+		let currentDate = new EnhancedDate(startOfMonth);
 
-		while (currentDate.valueOf() <= endOfMonth.valueOf()) {
+		while (currentDate.isSameOrBefore(endOfMonth)) {
 			daysTemp.push(
 				<span
 					key={currentDate.toLocaleDateString()}
 					className={`${styles.day} ${
-						currentDate.valueOf() === selectedDate.valueOf()
+						currentDate.isSame(selectedDate)
 							? styles.today
 							: ''
 					}`}
 					data-date={currentDate.toUTCString()}
 					onClick={(e) =>
 						setSelectedDate(
-							new Date(e.target.attributes[1].nodeValue)
+							new EnhancedDate(
+								e.target.attributes[1].nodeValue
+							)
 						)
 					}>
-					{getDate(currentDate, gergInput)}
+					{currentDate.print(gergInput ? 'D' : 'iD')}
 				</span>
 			);
-			currentDate.setDate(currentDate.getDate() + 1);
+			currentDate.add(1);
 		}
 
 		setDays(daysTemp);

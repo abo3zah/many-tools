@@ -6,42 +6,45 @@ import { YearPicker } from './yearPicker';
 import { MonthPicker } from './monthPicker';
 import { Days } from './days';
 import { DateToDate } from './dateToDate';
+import { EnhancedDate } from '../common/enhancedDate';
 import styles from './DateConverter.module.css';
-import {
-	setBeginingofMonth,
-	getDate,
-	getMonth,
-	getYear,
-	getFullDate,
-	getRequiredDate,
-	getCurrentDate,
-} from '../common/dateOptionsFunctions';
 
 export const UserInput = ({ gergInput }) => {
 	// states
-	const [selectedDate, setSelectedDate] = useState(getCurrentDate());
+	const [selectedDate, setSelectedDate] = useState(
+		new EnhancedDate().startOf('d')
+	);
 	const [dayNumForStartMonth, setDayNumForStartMonth] = useState(0);
-	const [year, setYear] = useState(getYear(selectedDate, gergInput));
-	const [month, setMonth] = useState(getMonth(selectedDate, gergInput));
+	const [year, setYear] = useState(
+		+selectedDate.print(gergInput ? 'YYYY' : 'iYYYY')
+	);
+	const [month, setMonth] = useState(
+		+selectedDate.print(gergInput ? 'M' : 'iM')
+	);
 
 	// change the states dependant on the user selection changes
 	useEffect(() => {
 		setDayNumForStartMonth(
-			setBeginingofMonth(selectedDate, gergInput).getDay()
+			new EnhancedDate(selectedDate)
+				.startOf(gergInput ? 'm' : 'im')
+				.getDay()
 		);
-		setYear(getYear(selectedDate, gergInput));
-		setMonth(getMonth(selectedDate, gergInput));
+		setYear(+selectedDate.print(gergInput ? 'YYYY' : 'iYYYY'));
+		setMonth(+selectedDate.print(gergInput ? 'M' : 'iM'));
 	}, [selectedDate]);
 
 	// adjust the date if year or month changed
 	useEffect(() => {
 		setSelectedDate(
-			getRequiredDate(
-				year,
-				month,
-				gergInput ? selectedDate.getDate() : getDate(selectedDate),
-				gergInput
-			)
+			gergInput
+				? new EnhancedDate(year, month - 1, selectedDate.getDate())
+				: new EnhancedDate()
+						.startOf('d')
+						.getHijriDate(
+							year,
+							month,
+							selectedDate.print('iD')
+						)
 		);
 	}, [year, month]);
 
@@ -54,8 +57,12 @@ export const UserInput = ({ gergInput }) => {
 				<input
 					className={styles.inputs}
 					type='text'
-					value={getFullDate(selectedDate, gergInput)}
-					placeholder='D/M/YYYY'
+					value={selectedDate.print(
+						gergInput
+							? 'WDD D-MMM-YYYY'
+							: 'WDD iD-iMMM-iYYYY',
+						'ar-SA'
+					)}
 					readOnly
 				/>
 				<div className={styles.popupDiv}>

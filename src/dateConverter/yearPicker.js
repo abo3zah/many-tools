@@ -1,12 +1,6 @@
 import styles from './DateConverter.module.css';
 
-export const YearPicker = ({
-	selectedYear,
-	setYear,
-	gergInput,
-	selectedDate,
-	setSelectedDate,
-}) => {
+export const YearPicker = ({ selectedYear, setYear, gergInput }) => {
 	let years = [];
 
 	let start = gergInput ? 1937 : 1356;

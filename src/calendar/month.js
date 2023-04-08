@@ -4,7 +4,7 @@ import { EnhancedDate } from '../common/enhancedDate';
 
 export const Month = ({ year, month }) => {
 	let weeks = [];
-	let firstDay = new EnhancedDate(`${year}-${month}-1`);
+	let firstDay = new EnhancedDate(year, month - 1, 1);
 	let firstWeek = firstDay.getWeek();
 	let currentWeek = firstDay.getWeek();
 	let dayNumber = firstDay.getDay();
