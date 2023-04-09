@@ -13,7 +13,7 @@ export const Main = ({ setMenu }) => {
 		<div className={styles.containers}>
 			{links.map((link) => (
 				<Link
-					key={link}
+					key={link.link}
 					to={`${link.link}`}
 					onClick={() => setMenu(false)}>
 					{link.text}
