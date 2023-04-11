@@ -7,7 +7,7 @@ export const QiblaContainer = ({ coordinates, heading }) => {
 
 	useEffect(()=>{
 		setQibla(Qibla(coordinates))
-	},[coordinates])
+	},[coordinates, heading])
 
 	return (
 		<>
