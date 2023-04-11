@@ -14,19 +14,14 @@ export const Athan = () => {
 	const [prayerTime, setPrayerTime] = useState(0);
 
 	useEffect(() => {
-		const timerID = setInterval(() => tick(), 1000);
-		return () => {
-			clearInterval(timerID);
-		};
-	}, []);
-
-	const tick = () => {
-		navigator.geolocation.getCurrentPosition((position) => {
+		setTimeout(() => {
+			navigator.geolocation.getCurrentPosition((position) => {
 				setLat(position.coords.latitude);
 				setLng(position.coords.longitude);
 				setHeading(position.coords.heading);
 			});
-	}
+		}, 1000);
+	}, []);
 
 	useEffect(() => {
 		setCoordinates(new Coordinates(lat, lng));
