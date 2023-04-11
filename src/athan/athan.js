@@ -3,7 +3,7 @@ import { AthanContainer } from './athanContainer';
 import { Coordinates } from 'adhan';
 import styles from './athan.module.css';
 import { Header } from './header';
-import { GetQibla } from './getQibla';
+import { QiblaContainer } from './qiblaContainer';
 import { RemainingToPrayer } from './remainingToPrayer';
 
 export const Athan = () => {
@@ -35,7 +35,7 @@ export const Athan = () => {
 					coordinates={coordinates}
 					setPrayerTime={setPrayerTime}
 				/>
-				<GetQibla coordinates={coordinates} heading={heading} />
+				<QiblaContainer coordinates={coordinates} heading={heading} />
 				<RemainingToPrayer prayerTime={prayerTime} />
 			</div>
 		</div>

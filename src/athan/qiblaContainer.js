@@ -2,7 +2,7 @@ import { Qibla } from 'adhan';
 import { useEffect, useState } from 'react';
 import styles from './athan.module.css';
 
-export const GetQibla = ({ coordinates, heading }) => {
+export const QiblaContainer = ({ coordinates, heading }) => {
 	const [qibla, setQibla] = useState(Qibla(coordinates));
 
 	useEffect(()=>{

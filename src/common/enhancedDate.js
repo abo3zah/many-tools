@@ -252,7 +252,9 @@ export class EnhancedDate extends Date {
 		types = types.filter((t) => {
 			if (str.includes(t)) {
 				str = str.replace(t, '');
-				return t;
+				return true
+			} else {
+				return false
 			}
 		});
 
@@ -313,9 +315,9 @@ export class EnhancedDate extends Date {
 		return `${number > 2 ? number : ''} ${
 			number < 1
 				? ''
-				: number == 1
+				: number === 1
 				? sentance[0]
-				: number == 2
+				: number === 2
 				? sentance[1]
 				: number < 11
 				? sentance[2]
