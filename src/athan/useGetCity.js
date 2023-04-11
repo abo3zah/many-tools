@@ -20,7 +20,10 @@ export const useGetCity = (lat, lng) => {
 				`${d.documentElement
 					.getElementsByTagName('province', '')[0]
 					.textContent.replace(' Governorate', '')
-					.replace(' governorate', '')}, ${
+					.replace(' governorate', '')
+					.replace('Governorate', '')
+					.replace(' of', '')
+					.replace('governorate', '')}, ${
 					d.documentElement.getElementsByTagName(
 						'country',
 						''

@@ -24,14 +24,14 @@ export const Prayer = ({ prayer, prayerTimes }) => {
 		<>
 			<div
 				className={`${styles.prayerName} ${
-					prayerTimes.currentPrayer() === prayer[0] &&
+					prayerTimes.nextPrayer() === prayer[0] &&
 					styles.currentPrayer
 				}`}>
 				{prayer[1]}
 			</div>
 			<div
 				className={`${
-					prayerTimes.currentPrayer() === prayer[0] &&
+					prayerTimes.nextPrayer() === prayer[0] &&
 					styles.currentPrayer
 				}`}>
 				{dateToString(prayerTimes[prayer[0]])}

@@ -1,6 +1,5 @@
 import { useGetCity } from './useGetCity';
-import { moment } from '../common/momentCalendar';
-import { english2arabic } from '../common/english2arabic';
+import { EnhancedDate } from '../common/enhancedDate'
 import styles from './athan.module.css';
 
 export const Header = ({ lat, lng }) => {
@@ -10,7 +9,7 @@ export const Header = ({ lat, lng }) => {
 		<div className={styles.header}>
 			<div className={styles.headerText}>{city}</div>
 			<div className={styles.headerText}>
-				{english2arabic(moment().format('iD - iMMMM - iYYYY هـ'))}
+				{new EnhancedDate().print('iD - iMMMM - iYYYY هـ','ar-SA')}
 			</div>
 			<div className={styles.prayerContainerHeader}>
 				<div className={`${styles.ColumnHeader}`}>الصلاة</div>

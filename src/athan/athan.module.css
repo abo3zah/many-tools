@@ -56,7 +56,8 @@
 }
 
 .currentPrayer {
-	color:brown
+	color:brown;
+	background-color: rgb(210, 210, 210);
 }
 
 .qiblaText{

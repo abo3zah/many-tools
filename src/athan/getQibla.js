@@ -1,9 +1,13 @@
 import { Qibla } from 'adhan';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './athan.module.css';
 
 export const GetQibla = ({ coordinates, heading }) => {
-	const [qibla] = useState(Qibla(coordinates));
+	const [qibla, setQibla] = useState(Qibla(coordinates));
+
+	useEffect(()=>{
+		setQibla(Qibla(coordinates))
+	},[coordinates])
 
 	return (
 		<>
