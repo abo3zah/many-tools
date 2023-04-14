@@ -1,3 +1,4 @@
+import React from 'react'
 import { NavBar } from './navBar';
 import { NavBrand } from './navBrand';
 import { SmallerScreenButton } from './smallerScreenButton';

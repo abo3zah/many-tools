@@ -1,3 +1,4 @@
+import React from 'react'
 import styles from './nav.module.css';
 
 export const SmallerScreenButton = ({ menu, setMenu }) => {

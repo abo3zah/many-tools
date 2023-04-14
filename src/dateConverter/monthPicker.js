@@ -1,3 +1,4 @@
+import React from 'react'
 import { hijriMonths, gergMonths } from '../common/months';
 import styles from './DateConverter.module.css';
 

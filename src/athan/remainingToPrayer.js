@@ -1,3 +1,4 @@
+import React from 'react'
 import styles from './athan.module.css';
 import { english2arabic } from '../common/english2arabic';
 

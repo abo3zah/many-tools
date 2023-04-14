@@ -31,7 +31,7 @@ export const useGetCity = (lat, lng) => {
 				}`
 			);
 		});
-	}, [lat, lng]);
+	}, [lat, lng, jsonUrl]);
 
 	return data;
 };

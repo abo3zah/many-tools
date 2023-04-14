@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { WeekDays } from './weekDays';
 import { EmptySpan } from './emptySpan';
 import { DatePickerHeader } from './datePickerHeader';
@@ -31,7 +31,7 @@ export const UserInput = ({ gergInput }) => {
 		);
 		setYear(+selectedDate.print(gergInput ? 'YYYY' : 'iYYYY'));
 		setMonth(+selectedDate.print(gergInput ? 'M' : 'iM'));
-	}, [selectedDate]);
+	}, [selectedDate, gergInput]);
 
 	// adjust the date if year or month changed
 	useEffect(() => {
@@ -46,7 +46,7 @@ export const UserInput = ({ gergInput }) => {
 							selectedDate.print('iD')
 						)
 		);
-	}, [year, month]);
+	}, [year, month, gergInput, selectedDate]);
 
 	return (
 		<div className={styles.userInputContainer}>

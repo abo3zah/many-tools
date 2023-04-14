@@ -1,3 +1,4 @@
+import React from 'react'
 import { useGetCity } from './useGetCity';
 import { EnhancedDate } from '../common/enhancedDate'
 import styles from './athan.module.css';

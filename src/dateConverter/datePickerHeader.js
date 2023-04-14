@@ -1,3 +1,4 @@
+import React from 'react'
 import styles from './DateConverter.module.css';
 
 export const DatePickerHeader = ({ date, gergInput }) => {

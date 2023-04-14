@@ -1,3 +1,4 @@
+import React from 'react'
 import { weekDaysMin } from '../common/months';
 import styles from './DateConverter.module.css';
 

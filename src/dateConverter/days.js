@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { EnhancedDate } from '../common/enhancedDate';
 
 import styles from './DateConverter.module.css';
@@ -40,6 +40,6 @@ export const Days = ({ selectedDate, setSelectedDate, gergInput }) => {
 		}
 
 		setDays(daysTemp);
-	}, [selectedDate]);
+	}, [selectedDate, gergInput, setSelectedDate]);
 	return <>{days}</>;
 };

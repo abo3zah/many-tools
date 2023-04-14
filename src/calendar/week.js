@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { HijriMonthsContext, MonthColorContext } from './monthHeader';
 import { AramcoVacationContext, SchoolVacationContext } from './calendar';
 import { EnhancedDate } from '../common/enhancedDate';

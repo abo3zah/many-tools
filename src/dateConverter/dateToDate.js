@@ -1,3 +1,4 @@
+import React from 'react'
 import styles from './DateConverter.module.css';
 import { english2arabic } from '../common/english2arabic';
 import { EnhancedDate } from '../common/enhancedDate';

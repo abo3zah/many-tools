@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React,{ useState, useEffect } from 'react';
 import { AthanContainer } from './athanContainer';
 import { Coordinates } from 'adhan';
 import styles from './athan.module.css';

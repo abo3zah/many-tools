@@ -1,7 +1,7 @@
 import { CalculationMethod, PrayerTimes, SunnahTimes } from 'adhan';
 import { Prayer } from './Prayer';
 import styles from './athan.module.css';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 const PrayersArray = [
 	['fajr', 'الفجر'],
@@ -31,7 +31,7 @@ export const AthanContainer = ({ coordinates, setPrayerTime }) => {
 		return () => {
 			clearInterval(timerID);
 		};
-	}, [coordinates]);
+	});
 
 	const tick = () => {
 		const next = prayerTimes.nextPrayer();

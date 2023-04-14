@@ -1,3 +1,4 @@
+import React from 'react'
 import { MonthHeader } from './monthHeader';
 import { Week } from './week';
 import { EnhancedDate } from '../common/enhancedDate';
